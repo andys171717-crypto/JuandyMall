@@ -887,10 +887,13 @@ let currentImageIndex = 0;
 setInterval(function() {
     // Mengambil semua gambar dalam elemen .banner
     const banners = document.querySelectorAll('.banner img');
+    
+    // Update setiap gambar di dalam .banner
     banners.forEach((banner, index) => {
-        // Mengganti gambar secara bergiliran
         banner.src = bannerImages[(currentImageIndex + index) % bannerImages.length];
     });
+    
+    // Update index gambar utama
     currentImageIndex = (currentImageIndex + 1) % bannerImages.length;
 }, 5000); // Ganti gambar setiap 5 detik
 </script>
