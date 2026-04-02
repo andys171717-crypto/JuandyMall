@@ -38,17 +38,22 @@ z-index:999;
     position: relative;
 }
 
+/* Ganti CSS untuk gambar banner */
 .banner img {
-    width: 100%;
+    width: 100%; 
     height: 180px;
     object-fit: cover;
-    animation: slide 10s ease-in-out infinite;
+    position: absolute; /* Memastikan semua gambar berada di atas satu sama lain */
+    opacity: 0; /* Gambar pertama tidak akan langsung terlihat */
+    animation: slide 15s ease-in-out infinite; /* Ganti animasi sesuai kebutuhan */
 }
 
+/* Ganti animasi untuk slide */
 @keyframes slide {
     0% { opacity: 0; }
     50% { opacity: 1; }
     100% { opacity: 0; }
+}
 }ox-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
 
@@ -876,18 +881,25 @@ renderAdmin()
 
 </script>
 <script>
+/* Script untuk mengganti gambar banner setiap 5 detik */
+let bannerImages = [
+    "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900",
+    "https://images.unsplash.com/photo-1573573435-8e49cfa750f6?w=900",
+    "https://images.unsplash.com/photo-1510337694161-55f9b11be779?w=900"
+];
+let currentImageIndex = 0;
+
 setInterval(function() {
-    // Mengambil semua gambar dalam elemen .banner
     const banners = document.querySelectorAll('.banner img');
     
-    // Update setiap gambar di dalam .banner
     banners.forEach((banner, index) => {
-        // Mengganti gambar secara bergantian berdasarkan urutan
-        banner.src = bannerImages[(currentImageIndex + index) % bannerImages.length];
+        banner.classList.remove('active');  // Menghapus kelas 'active'
+        if (index === currentImageIndex) {
+            banner.classList.add('active');  // Menambahkan kelas 'active' untuk gambar yang akan tampil
+        }
     });
-    
-    // Update index gambar utama
-    currentImageIndex = (currentImageIndex + 1) % bannerImages.length;
+
+    currentImageIndex = (currentImageIndex + 1) % bannerImages.length; // Ganti ke gambar selanjutnya
 }, 5000); // Ganti gambar setiap 5 detik
 </script>
 </body>
