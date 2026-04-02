@@ -866,35 +866,43 @@ renderAdmin()
 
 // Kode untuk animasi banner dan pergantian gambar
 let bannerImages = [
-"https://picsum.photos/900/400?1",
-"https://picsum.photos/900/400?2",
-"https://picsum.photos/900/400?3"
+"https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900",
+"https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=900",
+"https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=900"
 ];
 
 let bannerElement=document.querySelector(".banner img");
+
 let currentImageIndex=0;
+
+bannerElement.src=bannerImages[0];
 
 function changeBannerImage(){
 
-bannerElement.style.opacity=0;
-
-setTimeout(()=>{
-
 currentImageIndex++;
+
 if(currentImageIndex>=bannerImages.length){
 currentImageIndex=0;
 }
 
-bannerElement.src=bannerImages[currentImageIndex];
-bannerElement.style.opacity=1;
+let img=new Image();
+img.src=bannerImages[currentImageIndex];
 
-},400);
+img.onload=function(){
+
+bannerElement.style.opacity=0;
+
+setTimeout(()=>{
+bannerElement.src=img.src;
+bannerElement.style.opacity=1;
+},200);
+
+}
 
 }
 
 setInterval(changeBannerImage,5000);
 </script>
-</body>
 
 </body>
 </html>
