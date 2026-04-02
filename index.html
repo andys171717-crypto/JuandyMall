@@ -30,31 +30,7 @@ align-items:center;
 padding:0 12px;
 gap:10px;
 z-index:999;
-/* BANNER ANIMASI */
-.banner {
-    margin: 14px;
-    border-radius: 16px;
-    overflow: hidden;
-    position: relative;
-}
-
-/* Ganti CSS untuk gambar banner */
-.banner img {
-    width: 100%; 
-    height: 180px;
-    object-fit: cover;
-    position: absolute; /* Memastikan semua gambar berada di atas satu sama lain */
-    opacity: 0; /* Gambar pertama tidak akan langsung terlihat */
-    animation: slide 15s ease-in-out infinite; /* Ganti animasi sesuai kebutuhan */
-}
-
-/* Ganti animasi untuk slide */
-@keyframes slide {
-    0% { opacity: 0; }
-    50% { opacity: 1; }
-    100% { opacity: 0; }
-}
-}ox-shadow:0 2px 8px rgba(0,0,0,0.15);
+box-shadow:0 2px 8px rgba(0,0,0,0.15);
 }
 
 .search-box{
@@ -358,9 +334,7 @@ margin-bottom:4px;
 </div>
 
 <div class="banner">
-    <img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900" alt="Banner 1">
-    <img src="https://images.unsplash.com/photo-1573573435-8e49cfa750f6?w=900" alt="Banner 2">
-    <img src="https://images.unsplash.com/photo-1510337694161-55f9b11be779?w=900" alt="Banner 3">
+<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900">
 </div>
 
 <div class="category">
@@ -378,7 +352,7 @@ margin-bottom:4px;
 <button onclick="home()">⬅ kembali</button>
 
 <img id="dimg">
-    
+
 <div class="detail-title" id="dtitle"></div>
 <div class="detail-price" id="dprice"></div>
 <div class="detail-stock" id="dstok"></div>
@@ -399,7 +373,7 @@ Tambah Keranjang
 <div id="cartItems"></div>
 
 <h3>Total: <span id="totalCart">Rp0</span></h3>
-    
+
 <button onclick="checkout()"
 style="width:100%;padding:12px;background:#2563eb;color:white;border:none;border-radius:8px">
 Checkout
@@ -880,27 +854,6 @@ renderAdmin()
 }
 
 </script>
-<script>
-/* Script untuk mengganti gambar banner setiap 5 detik */
-let bannerImages = [
-    "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900",
-    "https://images.unsplash.com/photo-1573573435-8e49cfa750f6?w=900",
-    "https://images.unsplash.com/photo-1510337694161-55f9b11be779?w=900"
-];
-let currentImageIndex = 0;
 
-setInterval(function() {
-    const banners = document.querySelectorAll('.banner img');
-    
-    banners.forEach((banner, index) => {
-        banner.classList.remove('active');  // Menghapus kelas 'active'
-        if (index === currentImageIndex) {
-            banner.classList.add('active');  // Menambahkan kelas 'active' untuk gambar yang akan tampil
-        }
-    });
-
-    currentImageIndex = (currentImageIndex + 1) % bannerImages.length; // Ganti ke gambar selanjutnya
-}, 5000); // Ganti gambar setiap 5 detik
-</script>
 </body>
 </html>
