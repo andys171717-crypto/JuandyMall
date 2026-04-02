@@ -95,79 +95,15 @@ border-radius:10px;
   height: 180px;
 }
 
-.banner img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-  position: absolute;
-  opacity: 0;  /* Semua gambar dimulai dengan opacity 0 */
-  animation: slide 15s infinite;
-  transition: opacity 0.5s ease-in-out;
+.banner img{
+width:100%;
+height:180px;
+object-fit:cover;
+border-radius:16px;
+opacity:1;
+transition:opacity .5s ease;
 }
-
-@keyframes slide {
-  0% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  33% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-/* Animasi Slide untuk Pergantian Gambar */
-@keyframes slide {
-  0% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  33% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-@keyframes slide {
-  0% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  20% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  33% {
-    opacity: 1;
-  }
-  40% {
-    opacity: 0;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 0;
-  }
-}
+  
 /* CATEGORY */
 
 .category{
@@ -404,7 +340,7 @@ margin-bottom:4px;
 </div>
 
 <div class="banner">
-<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900">
+<img id="bannerImg">
 </div>
 
 <div class="category">
@@ -930,25 +866,33 @@ renderAdmin()
 
 // Kode untuk animasi banner dan pergantian gambar
 let bannerImages = [
-  "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900",
-  "https://images.unsplash.com/photo-1604479263077-22f50db9e77e?w=900",
-  "https://images.unsplash.com/photo-1614015312661-68b8245a6a37?w=900"
+"https://picsum.photos/900/400?1",
+"https://picsum.photos/900/400?2",
+"https://picsum.photos/900/400?3"
 ];
 
-let bannerElement = document.querySelector('.banner img');
-let currentImageIndex = 0;
+let bannerElement=document.querySelector(".banner img");
+let currentImageIndex=0;
 
-function changeBannerImage() {
-  currentImageIndex = (currentImageIndex + 1) % bannerImages.length;
-  bannerElement.style.opacity = 0;  // Set opacity to 0 for fade-out effect
-  setTimeout(function() {
-    bannerElement.src = bannerImages[currentImageIndex]; // Change the source of the image
-    bannerElement.style.opacity = 1;  // Fade-in the new image
-  }, 500); // Ensure the opacity transition matches CSS duration
+function changeBannerImage(){
+
+bannerElement.style.opacity=0;
+
+setTimeout(()=>{
+
+currentImageIndex++;
+if(currentImageIndex>=bannerImages.length){
+currentImageIndex=0;
 }
 
-// Call changeBannerImage every 5 seconds
-setInterval(changeBannerImage, 5000);
+bannerElement.src=bannerImages[currentImageIndex];
+bannerElement.style.opacity=1;
+
+},400);
+
+}
+
+setInterval(changeBannerImage,5000);
 </script>
 </body>
 
