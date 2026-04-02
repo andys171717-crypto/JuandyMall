@@ -876,20 +876,13 @@ renderAdmin()
 
 </script>
 <script>
-// Script untuk mengganti gambar banner setiap 5 detik
-let bannerImages = [
-    "https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900",
-    "https://images.unsplash.com/photo-1573573435-8e49cfa750f6?w=900",
-    "https://images.unsplash.com/photo-1510337694161-55f9b11be779?w=900"
-];
-let currentImageIndex = 0;
-
 setInterval(function() {
     // Mengambil semua gambar dalam elemen .banner
     const banners = document.querySelectorAll('.banner img');
     
     // Update setiap gambar di dalam .banner
     banners.forEach((banner, index) => {
+        // Mengganti gambar secara bergantian berdasarkan urutan
         banner.src = bannerImages[(currentImageIndex + index) % bannerImages.length];
     });
     
