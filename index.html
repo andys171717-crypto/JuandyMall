@@ -114,7 +114,7 @@ z-index:1;
 .banner-slider{
 display:flex;
 height:100%;
-transition:transform 0.45s linear;
+transition:transform 0.45s ease;
 }
 /* SETIAP SLIDE */
 
@@ -962,11 +962,7 @@ bannerSlider.style.transform =
 
 dots.forEach(d=>d.classList.remove("active"));
 
-let dotIndex = index;
-
-if(dotIndex >= dots.length){
-dotIndex = 0;
-}
+let dotIndex = index % dots.length;
 
 dots[dotIndex].classList.add("active");
 
@@ -1000,36 +996,71 @@ let autoSlide=setInterval(nextBanner,4000);
 
 /* SWIPE */
 
-let startX=0;
+/* SWIPE STABIL */
 
-bannerSlider.addEventListener("touchstart",e=>{
-startX=e.touches[0].clientX;
+let startX = 0;
+
+bannerSlider.addEventListener("touchstart", e => {
+
+startX = e.touches[0].clientX;
+
 clearInterval(autoSlide);
+
 });
 
-bannerSlider.addEventListener("touchend",e=>{
+bannerSlider.addEventListener("touchend", e => {
 
-let endX=e.changedTouches[0].clientX;
+let endX = e.changedTouches[0].clientX;
 
-if(startX-endX>50){
+let move = endX - startX;
+
+if(move < -50){
 index++;
 }
-
-if(endX-startX>50){
+else if(move > 50){
 index--;
 }
-
-if(index >= total){
-index = total-1;
+else{
+autoSlide = setInterval(nextBanner,4000);
+return;
 }
 
 if(index < 0){
-index = 0;
+
+bannerSlider.style.transition="none";
+
+index = total-2;
+
+bannerSlider.style.transform =
+"translateX(-"+(index*100)+"%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.45s linear";
+},50);
+
 }
 
 updateBanner();
 
-autoSlide=setInterval(nextBanner,4000);
+/* FIX CLONE SLIDE */
+
+if(index === total-1){
+
+setTimeout(()=>{
+
+bannerSlider.style.transition="none";
+index = 0;
+bannerSlider.style.transform="translateX(0%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.45s linear";
+},50);
+
+},450);
+
+}
+
+autoSlide = setInterval(nextBanner,4000);
 
 });
   
