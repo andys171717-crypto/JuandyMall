@@ -97,21 +97,63 @@ border-radius:10px;
 /* BANNER */
 
 /* Perbaikan untuk animasi banner */
-.banner {
-  position: relative;
-  margin: 14px;
-  border-radius: 16px;
-  overflow: hidden;
-  height: 180px;
+/* CONTAINER BANNER */
+
+.banner{
+width:calc(100% - 24px);
+aspect-ratio:16/7;
+margin:12px auto;
+border-radius:16px;
+overflow:hidden;
+position:relative;
+z-index:1;
 }
 
-.banner img{
+/* SLIDER */
+
+.banner-slider{
+display:flex;
+height:100%;
+transition:transform 0.45s linear;
+}
+/* SETIAP SLIDE */
+
+.banner-slide{
+flex:0 0 100%;
+height:100%;
+}
+
+/* GAMBAR */
+
+.banner-slide img{
 width:100%;
-height:180px;
+height:100%;
 object-fit:cover;
-border-radius:16px;
-opacity:1;
-transition:opacity .5s ease;
+display:block;
+}
+  
+.banner-dots{
+position:absolute;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:6px;
+z-index:5;
+}
+
+.dot{
+width:8px;
+height:8px;
+background:rgba(255,255,255,0.6);
+border-radius:50%;
+transition:0.3s;
+}
+
+.dot.active{
+background:white;
+width:18px;
+border-radius:10px;
 }
   
 /* CATEGORY */
@@ -348,9 +390,38 @@ margin-bottom:4px;
 
 </div>
 </div>
-
+  
 <div class="banner">
-<img id="bannerImg">
+
+<div class="banner-slider">
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900">
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=900">
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=900">
+</div>
+
+<!-- CLONE SLIDE PERTAMA -->
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900">
+</div>
+
+</div>
+  
+  
+<div class="banner-dots">
+<div class="dot active"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+
 </div>
 
 <div class="category">
@@ -875,43 +946,93 @@ renderAdmin()
 // Kode JavaScript lainnya yang sudah ada...
 
 // Kode untuk animasi banner dan pergantian gambar
-let bannerImages = [
-"https://images.unsplash.com/photo-1607082349566-187342175e2f?w=900",
-"https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=900",
-"https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=900"
-];
+/* BANNER FINAL STABLE */
 
-let bannerElement=document.querySelector(".banner img");
+const bannerSlider = document.querySelector(".banner-slider");
+const slides = document.querySelectorAll(".banner-slide");
+const dots = document.querySelectorAll(".dot");
 
-let currentImageIndex=0;
+let index = 0;
+let total = slides.length;
 
-bannerElement.src=bannerImages[0];
+function updateBanner(){
 
-function changeBannerImage(){
+bannerSlider.style.transform =
+"translateX(-"+(index*100)+"%)";
 
-currentImageIndex++;
+dots.forEach(d=>d.classList.remove("active"));
 
-if(currentImageIndex>=bannerImages.length){
-currentImageIndex=0;
+let dotIndex = index;
+
+if(dotIndex >= dots.length){
+dotIndex = 0;
 }
 
-let img=new Image();
-img.src=bannerImages[currentImageIndex];
+dots[dotIndex].classList.add("active");
 
-img.onload=function(){
+}
 
-bannerElement.style.opacity=0;
+function nextBanner(){
+
+index++;
+
+updateBanner();
+
+if(index === total-1){
 
 setTimeout(()=>{
-bannerElement.src=img.src;
-bannerElement.style.opacity=1;
-},80);
+
+bannerSlider.style.transition="none";
+index = 0;
+bannerSlider.style.transform="translateX(0%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.45s linear";
+},50);
+
+},450);
 
 }
 
 }
 
-setInterval(changeBannerImage,6000);
+let autoSlide=setInterval(nextBanner,4000);
+
+/* SWIPE */
+
+let startX=0;
+
+bannerSlider.addEventListener("touchstart",e=>{
+startX=e.touches[0].clientX;
+clearInterval(autoSlide);
+});
+
+bannerSlider.addEventListener("touchend",e=>{
+
+let endX=e.changedTouches[0].clientX;
+
+if(startX-endX>50){
+index++;
+}
+
+if(endX-startX>50){
+index--;
+}
+
+if(index >= total){
+index = total-1;
+}
+
+if(index < 0){
+index = 0;
+}
+
+updateBanner();
+
+autoSlide=setInterval(nextBanner,4000);
+
+});
+  
 </script>
 
 </body>
