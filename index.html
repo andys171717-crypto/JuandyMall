@@ -425,7 +425,7 @@ margin-bottom:4px;
 /* ================= */
 /* POPUP STYLE */
 /* ================= */
-/* popup background */
+
 .popup-bg{
 position:fixed;
 top:0;
@@ -433,68 +433,114 @@ left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.55);
-backdrop-filter:blur(4px);
-display:flex;
-justify-content:center;
+backdrop-filter:blur(6px);
+display:none;
 align-items:center;
-z-index:999;
+justify-content:center;
+z-index:99999;
 }
 
-/* popup box */
 .popup-box{
-background:linear-gradient(145deg,#ffffff,#eef3ff);
-border-radius:18px;
-padding:20px;
-width:75%;
-max-width:260px;
+background:white;
+padding:30px;
+border-radius:26px;
+width:88%;
+max-width:340px;
 text-align:center;
-box-shadow:0 15px 40px rgba(0,0,0,0.25);
-animation:popupShow 0.25s ease;
-}
-
-@keyframes popupShow{
-from{
-transform:scale(0.8);
-opacity:0;
-}
-to{
-transform:scale(1);
-opacity:1;
-}
+box-shadow:0 30px 70px rgba(0,0,0,0.35);
+animation:popupUp 0.35s ease;
 }
 
 .popup-icon{
-font-size:42px;
-margin-bottom:8px;
+font-size:52px;
+margin-bottom:12px;
 }
 
-.popup-box h2{
-font-size:20px;
-font-weight:700;
+.popup-box h3{
 margin:6px 0;
-background:linear-gradient(45deg,#1677ff,#5fa8ff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+font-size:18px;
 }
 
 .popup-box p{
 font-size:13px;
 color:#666;
-line-height:1.5;
+margin:3px 0;
 }
 
 .popup-box button{
-margin-top:16px;
-padding:10px;
+margin-top:18px;
+padding:12px 20px;
+border:none;
+border-radius:10px;
+background:linear-gradient(90deg,#2563eb,#1e40af);
+color:white;
+font-weight:600;
+font-size:14px;
+cursor:pointer;
 width:100%;
+transition:0.2s;
+}
+
+.popup-box button:active{
+transform:scale(0.95);
+}
+
+.popup-icon{
+font-size:52px;
+margin-bottom:12px;
+}
+
+.popup-box h3{
+margin:6px 0;
+font-size:18px;
+}
+
+.popup-box p{
+font-size:13px;
+color:#666;
+margin:3px 0;
+}
+
+.popup-box button{
+margin-top:18px;
+padding:13px;
 border:none;
 border-radius:12px;
-background:linear-gradient(135deg,#1677ff,#4d8dff);
+background:linear-gradient(135deg,#3b82f6,#2563eb);
 color:white;
-font-size:15px;
 font-weight:600;
+font-size:15px;
+width:100%;
 cursor:pointer;
-box-shadow:0 6px 18px rgba(0,0,0,0.25);
+box-shadow:0 6px 18px rgba(37,99,235,0.4);
+}
+
+.popup-box button:active{
+transform:scale(0.95);
+}
+
+.popup-icon{
+font-size:45px;
+margin-bottom:10px;
+}
+
+.popup-box button{
+margin-top:15px;
+padding:10px 18px;
+border:none;
+border-radius:8px;
+background:#2563eb;
+cursor:pointer;
+}
+
+@keyframes popupUp{
+0%{
+transform:translateY(60px) scale(0.9);
+opacity:0;
+}
+100%{
+transform:translateY(0) scale(1);
+opacity:1;
 }
 }
   
@@ -1263,19 +1309,16 @@ document.getElementById("popupSoon").style.display="none";
 
 <!-- POPUP COMING SOON -->
 
-<div id="popup" class="popup-bg" style="display:none;">
+<div id="popupSoon" class="popup-bg">
 
 <div class="popup-box">
 
-<div class="popup-icon">🚀</div>
+<div class="popup-icon">🚧</div>
 
-<h2>Fitur Baru JuandyMall</h2>
+<h3>Fitur Dalam Pengembangan</h3>
 
-<p style="font-size:14px;color:#555;">
-Tim <b>JuandyMall</b> sedang menyiapkan fitur ini.
-<br>
-Tunggu update menarik berikutnya!
-</p>
+<p>Fitur ini sedang kami siapkan</p>
+<p>Nantikan update berikutnya</p>
 
 <button onclick="closePopup()">OK</button>
 
