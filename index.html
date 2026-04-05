@@ -183,7 +183,7 @@ transition:0.25s;
 }
 
 .shortcut span{
-font-size:11px;
+font-size:10px;
 font-weight:600;
 color:#1e293b;
 letter-spacing:0.2px;
@@ -197,8 +197,8 @@ transform:translateY(-6px) scale(1.05);
 
 .shortcut i{
 font-size:20px;
-width:42px;
-height:42px;
+width:36px;
+height:36px;
 border-radius:14px;
 display:flex;
 align-items:center;
@@ -445,27 +445,34 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:rgba(0,0,0,0.55);
-backdrop-filter:blur(4px);
 display:flex;
-justify-content:center;
 align-items:center;
-z-index:20000;
+justify-content:center;
+background:rgba(0,0,0,0.25);
+backdrop-filter:blur(1px);
+z-index:999;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
 }
 
 /* popup box */
 .popup-box{
-width:78%;
-max-width:260px;
-background:linear-gradient(180deg,#ffffff,#f7f9fc);
-border-radius:20px;
-padding:20px 16px;
-text-align:center;
 position:relative;
-animation:popupShow 0.35s ease;
-box-shadow:0 15px 40px rgba(0,0,0,0.25);
+background:linear-gradient(135deg,#eff6ff,#dbeafe);
+padding:16px;
+border-radius:12px;
+width:140px;
+text-align:center;
+box-shadow:0 10px 28px rgba(0,0,0,0.15);
+animation:popupShow 0.25s cubic-bezier(.4,0,.2,1);
 }
- 
 .popup-box::before{
 content:"";
 position:absolute;
@@ -473,12 +480,29 @@ top:0;
 left:0;
 width:100%;
 height:5px;
-background:linear-gradient(90deg,#ff6a00,#ff2d55);
+background:linear-gradient(90deg,#2563eb,#1e3a8a);
 }
 
 @keyframes popupShow{
 from{
-transform:scale(0.8);
+transform:translateY(10px) scale(0.95);
+opacity:0;
+}
+to{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+}
+
+.popup-icon{
+font-size:26px;
+margin-bottom:12px;
+animation:iconPop 0.4s ease;
+}
+
+@keyframes iconPop{
+from{
+transform:scale(0.5);
 opacity:0;
 }
 to{
@@ -487,45 +511,38 @@ opacity:1;
 }
 }
 
-.popup-icon{
-font-size:36px;
-margin-bottom:10px;
-animation:rocketFloat 2s infinite ease-in-out;
-filter:drop-shadow(0 6px 8px rgba(0,0,0,0.35));
-}
-
 .popup-box h2{
-font-size:19px;
+font-size:14px;
 font-weight:700;
+font-family:'Poppins',sans-serif;
+font-weight:600;
+color:#1e3a8a;
+letter-spacing:0.3px;
 margin:6px 0;
-background:linear-gradient(45deg,#ff6a00,#ff2d55);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
 }
 
 .popup-box p{
 font-size:13px;
-color:#666;
+color:#1e293b;
 line-height:1.5;
 }
 
-.popup-box button{
-margin-top:16px;
-padding:12px;
-width:100%;
+ .popup-box button{
+margin-top:14px;
+background:linear-gradient(135deg,#2563eb,#1e40af);
 border:none;
-border-radius:30px;
-background:linear-gradient(135deg,#ff6a00,#ff2d55);
 color:white;
-font-size:15px;
+padding:9px 22px;
+border-radius:10px;
+font-size:13px;
 font-weight:600;
 cursor:pointer;
+box-shadow:0 6px 16px rgba(37,99,235,0.35);
 transition:0.25s;
-box-shadow:0 8px 20px rgba(255,80,0,0.4);
 }
-
-.popup-box button:active{
-transform:scale(0.95);
+.popup-box button:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
 }
   
 </style>
@@ -1301,16 +1318,14 @@ document.getElementById("popup").style.display="none";
 
 <div class="popup-icon">🚀</div>
 
-<h2>Fitur Baru JuandyMall</h2>
+<h2>Fitur Baru </h2>
 
-<p style="font-size:14px;color:#666;line-height:1.6;">
-Tim <b>JuandyMall</b> sedang menyiapkan fitur baru
-untuk meningkatkan pengalaman belanja Anda.
-<br><br>
-Tunggu update menarik berikutnya 🚀
+<p style="font-size:13px;color:#555;">
+Fitur sedang dikembangkan tim <strong>JuandyMall</strong>.<br>
+Segera hadir 🚀
 </p>
 
-<button onclick="closePopup()">OK</button>
+<button onclick="closePopup()">Siap</button>
 
 </div>
 
