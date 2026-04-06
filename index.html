@@ -766,10 +766,7 @@ let editIndex=-1
 
 let saved=localStorage.getItem("products")
 
-let productData=saved?JSON.parse(saved):[
-{name:"Sepatu Nike Sport",price:100000,stock:10,category:"Fashion",desc:"Sepatu olahraga nyaman",img:"https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600"},
-{name:"Headphone Wireless",price:200000,stock:5,category:"Elektronik",desc:"Headphone bluetooth",img:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=600"}
-]
+let productData=[]
 
 let savedCart=localStorage.getItem("cart")
 let cart=savedCart?JSON.parse(savedCart):[]
@@ -788,6 +785,31 @@ function rupiah(x){
 return "Rp"+x.toLocaleString()
 }
 
+async function loadFirebaseProducts(){
+
+productData=[]
+
+const querySnapshot = await getDocs(collection(db,"products"))
+
+querySnapshot.forEach((doc)=>{
+
+const p = doc.data()
+
+productData.push({
+name:p.name,
+price:p.price,
+stock:p.stock || 0,
+category:p.category,
+desc:p.description,
+img:p.image
+})
+
+})
+
+loadProducts()
+
+}
+  
 function loadProducts(list=productData){
 
 currentList=list
@@ -843,7 +865,9 @@ productList.innerHTML=html
 
 }
 
-loadProducts()
+window.addEventListener("load", function(){
+loadFirebaseProducts()
+})
 
 search.addEventListener("input",function(){
 
