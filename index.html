@@ -784,31 +784,6 @@ localStorage.setItem("cart",JSON.stringify(cart))
 function rupiah(x){
 return "Rp"+x.toLocaleString()
 }
-
-async function loadFirebaseProducts(){
-
-productData=[]
-
-const querySnapshot = await getDocs(collection(db,"products"))
-
-querySnapshot.forEach((doc)=>{
-
-const p = doc.data()
-
-productData.push({
-name:p.name,
-price:p.price,
-stock:p.stock || 0,
-category:p.category,
-desc:p.description,
-img:p.image
-})
-
-})
-
-loadProducts()
-
-}
   
 function loadProducts(list=productData){
 
@@ -864,10 +839,6 @@ Beli
 productList.innerHTML=html
 
 }
-
-window.addEventListener("load", function(){
-loadFirebaseProducts()
-})
 
 search.addEventListener("input",function(){
 
@@ -1378,8 +1349,35 @@ updateDoc
   };
 
   // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-  const db = getFirestore(app);
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+async function loadFirebaseProducts(){
+
+productData=[]
+
+const querySnapshot = await getDocs(collection(db,"products"))
+
+querySnapshot.forEach((doc)=>{
+
+const p = doc.data()
+
+productData.push({
+name:p.name,
+price:p.price,
+stock:p.stock || 10,
+category:p.category,
+desc:p.description,
+img:p.image
+})
+
+})
+
+loadProducts()
+
+}
+
+loadFirebaseProducts()
   
 window.saveProductFirebase = async function(product){
 
@@ -1389,8 +1387,8 @@ name:product.name,
 price:product.price,
 stock:product.stock,
 category:product.category,
-desc:product.desc,
-img:product.img
+description:product.desc,
+image:product.img
 
 })
 
