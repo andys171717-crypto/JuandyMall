@@ -515,7 +515,6 @@ opacity:1;
 font-size:14px;
 font-weight:700;
 font-family:'Poppins',sans-serif;
-font-weight:600;
 color:#1e3a8a;
 letter-spacing:0.3px;
 margin:6px 0;
@@ -722,13 +721,13 @@ Promo
 </div>
 
 <div onclick="openCart()">
-<i class="fa-solid fa-cart-shopping"></i>
-Cart
+<i class="fa-solid fa-basket-shopping"></i>
+Keranjang
 </div>
 
-<div onclick="toggleAdmin()">
-<i class="fa-solid fa-user"></i>
-Admin
+<div onclick="openAccount()">
+<i class="fa-solid fa-user-circle"></i>
+Akun
 </div>
 
 </div>
@@ -1064,14 +1063,18 @@ let reader=new FileReader()
 
 reader.onload=function(e){
 
-productData.push({
+let newProduct={
 name:name,
 price:Number(price),
 stock:Number(stock),
 category:category,
 desc:desc,
 img:e.target.result
-})
+}
+
+productData.push(newProduct)
+
+saveProductFirebase(newProduct)
 
 localStorage.setItem("products",JSON.stringify(productData))
 
@@ -1307,7 +1310,67 @@ document.getElementById("popup").style.display="flex";
 function closePopup(){
 document.getElementById("popup").style.display="none";
 }
+  
+// =======================
+// HALAMAN AKUN
+// =======================
 
+function openAccount(){
+
+productList.style.display="none";
+detailPage.style.display="none";
+cartPage.style.display="none";
+
+toggleAdmin();
+
+}
+
+</script>
+ 
+<script type="module">
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { 
+getFirestore,
+collection,
+getDocs,
+addDoc,
+deleteDoc,
+doc,
+updateDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAiYudqXkV1Gh2tvxmBsVD8n4l-OEqrZ-Y",
+    authDomain: "juandymall.firebaseapp.com",
+    projectId: "juandymall",
+    storageBucket: "juandymall.firebasestorage.app",
+    messagingSenderId: "583810438665",
+    appId: "1:583810438665:web:0d1fb697ce6b9087784ad8"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  
+window.saveProductFirebase = async function(product){
+
+await addDoc(collection(db,"products"),{
+
+name:product.name,
+price:product.price,
+stock:product.stock,
+category:product.category,
+desc:product.desc,
+img:product.img
+
+})
+
+}
 </script>
 
 <!-- POPUP COMING SOON -->
