@@ -1175,14 +1175,13 @@ async function deleteProduct(i){
 
 let product = productData[i]
 
-productData.splice(i,1)
-
-loadProducts()
-renderAdmin()
-
 if(product.id){
 await deleteDoc(doc(db,"products",product.id))
 }
+
+await loadFirebaseProducts()
+
+renderAdmin()
 
 }
 
@@ -1394,15 +1393,15 @@ loadFirebaseProducts()
 window.saveProductFirebase = async function(product){
 
 await addDoc(collection(db,"products"),{
-
 name:product.name,
 price:product.price,
 stock:product.stock,
 category:product.category,
 description:product.desc,
 image:product.img
-
 })
+
+await loadFirebaseProducts()
 
 }
 </script>
