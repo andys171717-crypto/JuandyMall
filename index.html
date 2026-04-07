@@ -1171,12 +1171,22 @@ editIndex=i
 
 }
 
-function deleteProduct(i){
+async function deleteProduct(i){
+
+let product = productData[i]
 
 productData.splice(i,1)
 
 loadProducts()
 renderAdmin()
+
+const querySnapshot = await getDocs(collection(db,"products"))
+
+querySnapshot.forEach(async (d)=>{
+if(d.data().name === product.name){
+await deleteDoc(doc(db,"products",d.id))
+}
+})
 
 }
 
