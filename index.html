@@ -1180,18 +1180,8 @@ productData.splice(i,1)
 loadProducts()
 renderAdmin()
 
-const querySnapshot = await getDocs(collection(db,"products"))
-
-for (const d of querySnapshot.docs){
-
-if(d.data().name === product.name){
-
-await deleteDoc(doc(db,"products",d.id))
-
-break
-
-}
-
+if(product.id){
+await deleteDoc(doc(db,"products",product.id))
 }
 
 }
@@ -1384,6 +1374,7 @@ querySnapshot.forEach((doc)=>{
 const p = doc.data()
 
 productData.push({
+id:doc.id,
 name:p.name,
 price:p.price,
 stock:p.stock || 10,
