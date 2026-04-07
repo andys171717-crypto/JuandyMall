@@ -1176,10 +1176,10 @@ async function deleteProduct(i){
 let product = productData[i]
 
 if(product.id){
-await deleteDoc(doc(db,"products",product.id))
+await window.deleteDoc(window.doc(window.db,"products",product.id))
 }
 
-await loadFirebaseProducts()
+await window.loadFirebaseProducts()
 
 renderAdmin()
 
@@ -1362,6 +1362,9 @@ updateDoc
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+window.db = db;
+window.doc = doc;
+window.deleteDoc = deleteDoc;
 async function loadFirebaseProducts(){
 
 productData=[]
@@ -1388,6 +1391,7 @@ loadProducts()
 
 }
 
+window.loadFirebaseProducts = loadFirebaseProducts;
 loadFirebaseProducts()
   
 window.saveProductFirebase = async function(product){
