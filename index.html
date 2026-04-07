@@ -1182,11 +1182,17 @@ renderAdmin()
 
 const querySnapshot = await getDocs(collection(db,"products"))
 
-querySnapshot.forEach(async (d)=>{
+for (const d of querySnapshot.docs){
+
 if(d.data().name === product.name){
+
 await deleteDoc(doc(db,"products",d.id))
+
+break
+
 }
-})
+
+}
 
 }
 
