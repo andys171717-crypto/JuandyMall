@@ -1,0 +1,1778 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JuandyMall</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+ 
+html{
+overflow-x:hidden;
+}
+
+body{
+margin:0;
+font-family:'Inter','Poppins',sans-serif;
+background:#f5f5f5;
+padding-top:70px;
+padding-bottom:75px;
+overflow-x:hidden;
+-webkit-overflow-scrolling:touch;
+touch-action:manipulation;
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:0;
+right:0;
+height:60px;
+background:linear-gradient(90deg,#2563eb,#1e3a8a);
+display:flex;
+align-items:center;
+padding:0 12px;
+gap:10px;
+z-index:9999;
+box-shadow:0 2px 8px rgba(0,0,0,0.15);
+
+transform:translateZ(0);
+will-change:transform;
+}
+
+.search-box{
+flex:1;
+height:40px;
+background:white;
+border-radius:25px;
+display:flex;
+align-items:center;
+padding:0 12px;
+gap:8px;
+}
+
+.search-box input{
+flex:1;
+border:none;
+outline:none;
+font-size:16px; /* Menambah ukuran font untuk teks */
+background:transparent;
+padding:8px 12px; /* Menambah padding agar teks tidak terlalu rapat dengan tepi */
+text-align: left; /* Pastikan teks berada di kiri */
+}
+
+/* ICON */
+
+.header-icons{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.icon{
+color:white;
+font-size:20px;
+width:26px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+cursor:pointer;
+}
+
+.badge{
+position:absolute;
+top:-4px;
+right:-6px;
+background:red;
+color:white;
+font-size:10px;
+padding:2px 5px;
+border-radius:10px;
+}
+
+/* BANNER */
+
+/* Perbaikan untuk animasi banner */
+/* CONTAINER BANNER */
+
+.banner{
+width:calc(100% - 24px);
+aspect-ratio:16/7;
+margin:12px auto;
+border-radius:16px;
+overflow:hidden;
+position:relative;
+z-index:1;
+box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* SLIDER */
+
+.banner-slider{
+display:flex;
+height:100%;
+transition:transform 0.35s ease;
+}
+/* SETIAP SLIDE */
+
+.banner-slide{
+flex:0 0 100%;
+height:100%;
+}
+
+/* GAMBAR */
+
+.banner-slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+  
+.banner-dots{
+position:absolute;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:6px;
+z-index:5;
+}
+
+.dot{
+width:8px;
+height:8px;
+background:rgba(255,255,255,0.6);
+border-radius:50%;
+transition:0.3s;
+}
+
+.dot.active{
+background:white;
+width:18px;
+border-radius:10px;
+}
+
+/* SHORTCUT MENU */
+
+.shortcuts{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+padding:12px;
+
+background:linear-gradient(135deg,#eef2ff,#f8fafc);
+
+border-radius:18px;
+box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+.shortcut{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:6px 4px;
+border-radius:10px;
+cursor:pointer;
+transition:0.25s;
+}
+
+.shortcut span{
+font-size:10px;
+font-weight:600;
+color:#1e293b;
+letter-spacing:0.2px;
+text-align:center;
+}
+
+.shortcut:hover{
+background:rgba(255,255,255,0.15);
+transform:translateY(-6px) scale(1.05);
+}
+
+.shortcut i{
+font-size:20px;
+width:36px;
+height:36px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+margin-bottom:6px;
+
+background:white;
+
+box-shadow:0 6px 14px rgba(0,0,0,0.12);
+}
+.more-shortcut i{
+background:#6b7280;
+}
+  
+/* CATEGORY */
+
+.category{
+display:flex;
+overflow-x:auto;
+gap:20px;
+padding:16px;
+background:white;
+}
+
+.category::-webkit-scrollbar{
+display:none;
+}
+
+.cat{
+text-align:center;
+min-width:70px;
+font-size:12px;
+}
+
+.circle{
+width:56px;
+height:56px;
+background:white;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+margin-bottom:8px;
+font-size:24px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.shortcut:nth-child(1) i{color:#ff4d4f;}
+.shortcut:nth-child(2) i{color:#1890ff;}
+.shortcut:nth-child(3) i{color:#52c41a;}
+.shortcut:nth-child(4) i{color:#fa8c16;}
+.shortcut:nth-child(5) i{color:#722ed1;}
+.shortcut:nth-child(6) i{color:#eb2f96;}
+.shortcut:nth-child(7) i{color:#13c2c2;}
+.shortcut:nth-child(8) i{color:#faad14;}
+  
+.shortcut:active{
+transform:scale(0.92);
+transition:0.2s;
+}
+  
+/* PRODUCTS */
+
+.products{
+padding:14px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
+.product:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 24px rgba(0,0,0,0.12);
+transition:0.25s;
+}
+
+.product{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
+transition:0.25s;
+position:relative;
+}
+  
+.product:active{
+transform:scale(0.97);
+transition:0.2s;
+}
+  
+.product img{
+width:100%;
+height:150px;
+object-fit:cover;
+cursor:pointer;
+transition:0.3s;
+}
+
+.product:hover img{
+transform:scale(1.05);
+}
+  
+.discount{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+color:white;
+font-size:11px;
+padding:4px 8px;
+border-radius:6px;
+z-index:2;
+}
+  
+.favorite{
+position:absolute;
+top:10px;
+right:10px;
+background:white;
+width:28px;
+height:28px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+font-size:14px;
+color:#e74c3c;
+cursor:pointer;
+}
+
+.info{
+padding:12px;
+display:flex;
+flex-direction:column;
+gap:4px;
+}
+
+.product-title{
+font-size:14px;
+font-weight:600;
+line-height:1.35;
+color:#111827;
+margin-top:4px;
+
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.price{
+color:#2563eb;
+font-size:18px;
+font-weight:800;
+margin-top:6px;
+letter-spacing:0.3px;
+}
+
+.stock{
+font-size:11px;
+color:#888;
+margin-top:2px;
+}
+  
+.rating{
+font-size:13px;
+color:#f59e0b;
+font-weight:600;
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+.rating .reviews{
+color:#6b7280;
+font-weight:500;
+}
+
+.sold{
+font-size:12px;
+color:#ef4444;
+font-weight:600;
+}
+  
+.review-count{
+font-size:11px;
+color:#777;
+}
+
+/* BADGE KATEGORI PRODUK */
+
+.category-tag{
+display:inline-block;
+font-size:10px;
+background:#eef2ff;
+color:#2563eb;
+padding:2px 6px;
+border-radius:6px;
+margin-top:2px;
+font-weight:600;
+}
+  
+.actions{
+display:flex;
+gap:6px;
+padding:10px;
+margin-top:6px;
+}
+
+.btn{
+flex:1;
+border:none;
+height:34px;
+border-radius:10px;
+color:white;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+transition:0.2s;
+}
+  
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 12px rgba(0,0,0,0.15);
+}
+  
+.btn:active{
+transform:scale(0.95);
+}
+
+.cartbtn{background:#27ae60;width:40px;flex:none;}
+.buy{background:#2563eb;}
+
+/* DETAIL */
+
+.detail{
+display:none;
+padding:16px;
+}
+
+.detail img{
+width:100%;
+border-radius:14px;
+}
+
+.detail-title{
+font-size:20px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.detail-price{
+font-size:24px;
+color:#2563eb;
+font-weight:bold;
+}
+
+.detail-stock{
+font-size:14px;
+color:#555;
+margin-top:6px;
+}
+  
+/* PRODUCT REVIEWS */
+
+.reviews{
+margin-top:20px;
+}
+
+.review{
+background:#fff;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+.review-stars{
+color:#f1c40f;
+font-size:14px;
+}
+
+.review-text{
+font-size:13px;
+color:#444;
+margin-top:4px;
+}
+
+/* CART */
+
+.cartpage{
+display:none;
+padding:16px;
+}
+
+.cart-item{
+background:white;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+/* ADMIN PANEL */
+
+.adminpanel{
+display:none;
+padding:16px;
+background:white;
+margin:16px;
+border-radius:12px;
+}
+
+.adminpanel input,
+.adminpanel textarea{
+width:100%;
+padding:8px;
+margin-bottom:8px;
+}
+
+/* BOTTOM */
+
+.bottom{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+height:65px;
+
+background:linear-gradient(90deg,#2563eb,#1d4ed8);
+
+display:flex;
+justify-content:space-around;
+align-items:center;
+
+box-shadow:0 -4px 20px rgba(0,0,0,0.15);
+
+z-index:999;
+  
+transform:translateZ(0);
+will-change:transform;
+}
+
+.bottom div{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:11px;
+color:#ffffff;
+cursor:pointer;
+transition:0.2s;
+}
+
+.bottom i{
+font-size:20px;
+margin-bottom:3px;
+}
+
+.bottom .active{
+color:#facc15;
+font-weight:600;
+}
+  
+/* ================= */
+/* POPUP STYLE */
+/* ================= */
+/* popup background */
+.popup-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(0,0,0,0.25);
+backdrop-filter:blur(1px);
+z-index:999;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+
+/* popup box */
+.popup-box{
+position:relative;
+background:linear-gradient(135deg,#eff6ff,#dbeafe);
+padding:16px;
+border-radius:12px;
+width:140px;
+text-align:center;
+box-shadow:0 10px 28px rgba(0,0,0,0.15);
+animation:popupShow 0.25s cubic-bezier(.4,0,.2,1);
+}
+.popup-box::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:5px;
+background:linear-gradient(90deg,#2563eb,#1e3a8a);
+}
+
+@keyframes popupShow{
+from{
+transform:translateY(10px) scale(0.95);
+opacity:0;
+}
+to{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+}
+
+.popup-icon{
+font-size:26px;
+margin-bottom:12px;
+animation:iconPop 0.4s ease;
+}
+
+@keyframes iconPop{
+from{
+transform:scale(0.5);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.popup-box h2{
+font-size:14px;
+font-weight:700;
+font-family:'Poppins',sans-serif;
+color:#1e3a8a;
+letter-spacing:0.3px;
+margin:6px 0;
+}
+.popup-box p{
+font-size:13px;
+color:#1e293b;
+line-height:1.5;
+}
+.popup-box button{
+margin-top:12px;
+width:100%;
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+border:none;
+color:white;
+padding:9px 22px;
+border-radius:10px;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(37,99,235,0.35);
+transition:0.25s;
+}
+.popup-box button:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+.popup-box input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:14px;
+box-sizing:border-box;
+}
+.popup-box{
+width:260px;
+background:#fff;
+padding:20px;
+border-radius:12px;
+text-align:center;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+}
+  
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="header">
+
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="search" placeholder="Cari produk di JuandyMall">
+</div>
+
+<div class="header-icons">
+
+<div class="icon">
+<i class="fa-solid fa-bell"></i>
+</div>
+
+<div class="icon" onclick="openCart()">
+<i class="fa-solid fa-cart-shopping"></i>
+<span class="badge" id="cartcount">0</span>
+</div>
+
+<div class="icon">
+<i class="fa-solid fa-comment-dots"></i>
+</div>
+
+</div>
+</div>
+  
+<div class="banner">
+
+<div class="banner-slider">
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600">
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600">
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=600">
+</div>
+
+<!-- CLONE SLIDE PERTAMA -->
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600">
+</div>
+
+</div>
+  
+<div class="banner-dots">
+<div class="dot active"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+
+</div>
+
+<!-- SHORTCUT MENU -->
+
+<div class="shortcuts">
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-bolt"></i>
+<span>Promo</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-mobile-screen"></i>
+<span>Pulsa</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-gamepad"></i>
+<span>Game</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-shirt"></i>
+<span>Fashion</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-gift"></i>
+<span>Gratis</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-tag"></i>
+<span>Diskon</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-truck"></i>
+<span>Ongkir</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-ellipsis"></i>
+<span>Lainnya</span>
+</div>
+
+</div>
+
+<div class="products" id="productList"></div>
+
+<div class="detail" id="detailPage">
+
+<button onclick="home()">⬅ kembali</button>
+
+<img id="dimg">
+
+<div class="detail-title" id="dtitle"></div>
+<div class="detail-price" id="dprice"></div>
+<div class="detail-stock" id="dstok"></div>
+<div id="ddesc" style="margin:10px 0;color:#555"></div>
+  
+<!-- ULASAN PRODUK -->
+
+<div class="reviews">
+
+<h3>Ulasan Pembeli</h3>
+
+<div class="review">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-text">Produk bagus dan sesuai.</div>
+</div>
+
+<div class="review">
+<div class="review-stars">⭐⭐⭐⭐</div>
+<div class="review-text">Pengiriman cepat.</div>
+</div>
+
+</div>
+
+<button onclick="addCartDetail()"
+style="width:100%;padding:12px;background:#27ae60;color:white;border:none;border-radius:10px">
+Tambah Keranjang
+</button>
+</div>
+  
+<div class="cartpage" id="cartPage">
+
+<h3>Keranjang</h3>
+
+<div id="cartItems"></div>
+
+<h3>Total: <span id="totalCart">Rp0</span></h3>
+
+<button onclick="checkout()"
+style="width:100%;padding:12px;background:#2563eb;color:white;border:none;border-radius:8px">
+Checkout
+</button>
+
+</div>
+
+<div class="adminpanel" id="adminPanel">
+
+<h3>Admin Panel</h3>
+
+<input id="pname" placeholder="Nama produk">
+<input id="pprice" placeholder="Harga">
+<input id="pstock" placeholder="Stok produk">
+<input id="pcategory" placeholder="Kategori produk">
+<textarea id="pdesc" placeholder="Deskripsi produk"></textarea>
+<input type="file" id="pimg">
+
+<button onclick="addProduct()">Tambah / Update Produk</button>
+
+<h4>Daftar Produk</h4>
+
+<div id="adminList"></div>
+
+</div>
+
+<div class="bottom">
+
+<div onclick="home()">
+<i class="fa-solid fa-house"></i>
+Home
+</div>
+
+<div onclick="comingSoon()">
+<i class="fa-solid fa-fire"></i>
+Promo
+</div>
+
+<div onclick="comingSoon()">
+<i class="fa-solid fa-layer-group"></i>
+Kategori
+</div>
+  
+<div onclick="openAccount()">
+<i class="fa-solid fa-user-circle"></i>
+Akun
+</div>
+
+</div>
+
+<script>
+
+
+/* SCRIPT ASLI + FITUR EDIT PRODUK */
+
+const productList=document.getElementById("productList")
+const search=document.getElementById("search")
+const cartcount=document.getElementById("cartcount")
+const detailPage=document.getElementById("detailPage")
+const cartPage=document.getElementById("cartPage")
+const adminPanel=document.getElementById("adminPanel")
+
+const dimg=document.getElementById("dimg")
+const dtitle=document.getElementById("dtitle")
+const dprice=document.getElementById("dprice")
+const ddesc=document.getElementById("ddesc")
+const dstok=document.getElementById("dstok")
+
+const cartItems=document.getElementById("cartItems")
+const totalCart=document.getElementById("totalCart")
+
+const adminList=document.getElementById("adminList")
+
+const pname=document.getElementById("pname")
+const pprice=document.getElementById("pprice")
+const pstock=document.getElementById("pstock")
+const pcategory=document.getElementById("pcategory")
+const pdesc=document.getElementById("pdesc")
+const pimg=document.getElementById("pimg")
+
+let editIndex=-1
+
+
+let productData=[]
+
+let savedCart=localStorage.getItem("cart")
+let cart=savedCart?JSON.parse(savedCart):[]
+
+let savedFav = localStorage.getItem("wishlist")
+let wishlist = savedFav ? JSON.parse(savedFav) : []
+
+let selectedProduct=null
+let selectedProductIndex=-1
+let currentList=[...productData]
+
+cartcount.innerText=cart.length
+
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart))
+}
+
+function rupiah(x){
+return "Rp"+x.toLocaleString()
+}
+  
+function loadProducts(list=productData){
+
+currentList=list
+
+let html=""
+
+list.forEach((p,i)=>{
+let realIndex = productData.indexOf(p)
+  
+html+=`
+
+<div class="product">
+
+<div class="discount">-20%</div>
+
+<div class="favorite" onclick="toggleFav(${realIndex},this)">
+<i class="${wishlist.includes(realIndex)?'fa-solid':'fa-regular'} fa-heart"></i>
+</div>
+
+<img src="${p.img}" onclick="openDetail(${realIndex})">
+
+<div class="info">
+
+<div class="product-title">${p.name}</div>
+<div class="category-tag">${p.category||""}</div>
+<div class="rating">⭐ 4.8 <span class="review-count">(120)</span></div>
+<div class="sold">🔥 120 terjual</div>
+<div class="price">${rupiah(p.price)}</div>
+<div class="stock">Stok: ${p.stock}</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn cartbtn" onclick="addCart(${realIndex})">
+<i class="fa-solid fa-cart-shopping"></i>
+</button>
+
+<button class="btn buy" onclick="buyNow(${realIndex})">
+Beli
+</button>
+
+</div>
+
+</div>
+
+`
+
+})
+
+productList.innerHTML=html
+
+}
+
+search.addEventListener("input",function(){
+
+let key=this.value.toLowerCase()
+
+let result = productData.filter(p =>
+(p.name || "").toLowerCase().includes(key)
+)
+
+loadProducts(result)
+
+})
+
+function openDetail(i){
+
+let p=currentList[i]
+if(!p)return
+
+selectedProduct=p
+selectedProductIndex = productData.indexOf(p)
+
+productList.style.display="none"
+detailPage.style.display="block"
+cartPage.style.display="none"
+
+dimg.src=p.img
+dtitle.innerText=p.name
+dprice.innerText=rupiah(p.price)
+ddesc.innerText=p.desc||""
+dstok.innerText="Stok: "+p.stock
+
+}
+
+function addCart(i){
+
+let p=currentList[i]
+if(!p)return
+
+if(p.stock<=0){
+alert("Stok habis")
+return
+}
+
+cart.push(p)
+
+cartcount.innerText=cart.length
+saveCart()
+
+}
+
+function addCartDetail(){
+
+if(selectedProductIndex==-1)return
+
+cart.push(productData[selectedProductIndex])
+
+cartcount.innerText=cart.length
+saveCart()
+
+}
+
+function openCart(){
+
+productList.style.display="none"
+detailPage.style.display="none"
+cartPage.style.display="block"
+
+renderCart()
+
+}
+
+function renderCart(){
+
+let html=""
+let total=0
+
+cart.forEach((c,i)=>{
+
+html+=`
+
+<div class="cart-item">
+
+<div>
+${c.name}<br>
+<b>${rupiah(c.price)}</b>
+</div>
+
+<button onclick="removeCart(${i})">Hapus</button>
+
+</div>
+
+`
+
+total+=c.price
+
+})
+
+cartItems.innerHTML=html||"Keranjang kosong"
+totalCart.innerText=rupiah(total)
+
+}
+
+function removeCart(i){
+
+cart.splice(i,1)
+cartcount.innerText=cart.length
+saveCart()
+renderCart()
+
+}
+
+function buyNow(i){
+
+let p=currentList[i]
+if(!p)return
+
+let realIndex = productData.indexOf(p)
+
+if(productData[realIndex].stock <= 0){
+alert("Stok habis")
+return
+}
+
+productData[realIndex].stock--
+
+cart.push(productData[realIndex])
+cartcount.innerText = cart.length
+saveCart()
+
+loadProducts()
+openCart()
+
+}
+
+function checkout(){
+
+alert("Checkout berhasil!")
+
+cart=[]
+cartcount.innerText=0
+saveCart()
+
+renderCart()
+home()
+
+}
+
+function home(){
+
+productList.style.display="grid"
+detailPage.style.display="none"
+cartPage.style.display="none"
+adminPanel.style.display="none"
+
+}
+
+let isAdmin=false
+
+function toggleAdmin(){
+
+if(!isAdmin){
+
+let u=prompt("Username admin")
+let p=prompt("Password")
+
+if(u==="admin" && p==="123456"){
+
+isAdmin=true
+adminPanel.style.display="block"
+renderAdmin()
+
+}else{
+
+alert("Login gagal")
+}
+
+return
+
+}
+
+adminPanel.style.display=
+adminPanel.style.display=="none"?"block":"none"
+
+renderAdmin()
+
+}
+
+function addProduct(){
+
+let name=pname.value.trim()
+let price=pprice.value.trim()
+let stock=pstock.value.trim()
+let category=pcategory.value.trim()
+let desc=pdesc.value.trim()
+let file=pimg.files[0]
+
+if(name==""||price==""||stock==""){
+alert("Isi semua data produk")
+return
+}
+
+if(isNaN(price)||isNaN(stock)){
+alert("Harga dan stok harus angka")
+return
+}
+
+if(editIndex==-1){
+
+if(!file){
+alert("Pilih gambar")
+return
+}
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+let newProduct={
+name:name,
+price:Number(price),
+stock:Number(stock),
+category:category,
+desc:desc,
+img:e.target.result
+}
+
+productData.push(newProduct)
+  
+currentList=[...productData]
+
+saveProductFirebase(newProduct)
+
+loadProducts()
+renderAdmin()
+
+}
+
+reader.readAsDataURL(file)
+
+}else{
+
+productData[editIndex].name=name
+productData[editIndex].price=Number(price)
+productData[editIndex].stock=Number(stock)
+productData[editIndex].category=category
+productData[editIndex].desc=desc
+
+if(file){
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+productData[editIndex].img=e.target.result
+
+loadProducts()
+renderAdmin()
+
+}
+
+reader.readAsDataURL(file)
+
+}else{
+
+loadProducts()
+renderAdmin()
+
+}
+
+editIndex=-1
+
+}
+
+pname.value=""
+pprice.value=""
+pstock.value=""
+pcategory.value=""
+pdesc.value=""
+pimg.value=""
+
+}
+
+function renderAdmin(){
+
+let html=""
+
+productData.forEach((p,i)=>{
+
+html+=`
+
+<div style="margin-bottom:6px">
+
+${p.name} - ${rupiah(p.price)} (stok ${p.stock})
+
+<button onclick="startEdit(${i})">edit</button>
+<button onclick="deleteProduct(${i})">hapus</button>
+
+</div>
+
+`
+
+})
+
+adminList.innerHTML=html
+
+}
+
+function startEdit(i){
+
+let p=productData[i]
+
+pname.value=p.name
+pprice.value=p.price
+pstock.value=p.stock
+pcategory.value=p.category||""
+pdesc.value=p.desc
+
+editIndex=i
+
+}
+
+async function deleteProduct(i){
+
+let product = productData[i]
+
+if(product.id){
+await window.deleteDoc(window.doc(window.db,"products",product.id))
+}
+
+await window.loadFirebaseProducts()
+
+renderAdmin()
+
+}
+
+</script>
+<script>
+// Kode JavaScript lainnya yang sudah ada...
+
+// Kode untuk animasi banner dan pergantian gambar
+/* BANNER FINAL STABLE */
+
+const bannerSlider = document.querySelector(".banner-slider");
+const slides = document.querySelectorAll(".banner-slide");
+const dots = document.querySelectorAll(".dot");
+
+let index = 0;
+let total = slides.length;
+
+function updateBanner(){
+
+bannerSlider.style.transform =
+"translateX(-"+(index*100)+"%)";
+
+dots.forEach(d=>d.classList.remove("active"));
+
+let dotIndex = index % dots.length;
+
+dots[dotIndex].classList.add("active");
+
+}
+
+function nextBanner(){
+
+index++;
+
+updateBanner();
+
+if(index === total-1){
+
+setTimeout(()=>{
+
+bannerSlider.style.transition="none";
+index = 0;
+bannerSlider.style.transform="translateX(0%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.35s ease";
+},50);
+
+},450);
+
+}
+
+}
+
+let autoSlide=setInterval(nextBanner,4000);
+
+updateBanner();
+
+/* SWIPE */
+
+/* SWIPE STABIL */
+
+let startX = 0;
+
+bannerSlider.addEventListener("touchstart", (e)=>{
+
+startX = e.touches[0].clientX;
+
+clearInterval(autoSlide);
+
+});
+
+bannerSlider.addEventListener("touchend", (e)=>{
+
+let endX = e.changedTouches[0].clientX;
+
+let move = endX - startX;
+
+if(move < -50){
+index = Math.min(index + 1, total - 1);
+}
+else if(move > 50){
+index = Math.max(index - 1, 0);
+}
+
+if(index < 0){
+
+bannerSlider.style.transition="none";
+
+index = total-2;
+
+bannerSlider.style.transform =
+"translateX(-"+(index*100)+"%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.35s ease";
+},50);
+
+}
+
+updateBanner();
+
+/* FIX CLONE SLIDE */
+
+if(index === total-1){
+
+setTimeout(()=>{
+
+bannerSlider.style.transition="none";
+index = 0;
+bannerSlider.style.transform="translateX(0%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.35s ease";
+},50);
+
+},350);
+
+}
+
+autoSlide = setInterval(nextBanner,4000);
+
+});
+
+/* POPUP SCRIPT */
+
+function comingSoon(){
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+  
+// =======================
+// HALAMAN AKUN
+// =======================
+
+function openAccount(){
+document.getElementById("loginPopup").style.display="flex";
+}
+
+</script>
+ 
+<script type="module">
+  // Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import { 
+getFirestore,
+collection,
+getDocs,
+addDoc,
+deleteDoc,
+doc,
+updateDoc
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+GoogleAuthProvider,
+signInWithPopup
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyAiYudqXkV1Gh2tvxmBsVD8n4l-OEqrZ-Y",
+    authDomain: "juandymall.firebaseapp.com",
+    projectId: "juandymall",
+    storageBucket: "juandymall.firebasestorage.app",
+    messagingSenderId: "583810438665",
+    appId: "1:583810438665:web:0d1fb697ce6b9087784ad8"
+  };
+
+  // Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const auth = getAuth(app);
+const provider = new GoogleAuthProvider();
+  
+window.db = db;
+window.doc = doc;
+window.deleteDoc = deleteDoc;
+async function loadFirebaseProducts(){
+
+productData=[]
+
+const querySnapshot = await getDocs(collection(db,"products"))
+
+querySnapshot.forEach((doc)=>{
+
+const p = doc.data()
+
+productData.push({
+id:doc.id,
+name:p.name,
+price:p.price,
+stock:p.stock || 10,
+category:p.category,
+desc:p.description || "",
+img:p.image || ""
+})
+
+})
+
+loadProducts()
+
+}
+
+window.loadFirebaseProducts = loadFirebaseProducts;
+loadFirebaseProducts()
+  
+window.saveProductFirebase = async function(product){
+
+await addDoc(collection(db,"products"),{
+name:product.name,
+price:product.price,
+stock:product.stock,
+category:product.category,
+description:product.desc,
+image:product.img
+})
+
+await loadFirebaseProducts()
+
+}
+  
+function toggleFav(index,el){
+
+if(wishlist.includes(index)){
+
+wishlist = wishlist.filter(i => i != index)
+
+}else{
+
+wishlist.push(index)
+
+}
+
+localStorage.setItem("wishlist",JSON.stringify(wishlist))
+
+loadProducts(currentList)
+
+}
+
+window.loginGoogle = async function(){
+
+try{
+
+await signInWithPopup(auth, provider)
+
+alert("Login Google berhasil")
+
+}catch(e){
+
+alert(e.message)
+
+}
+
+}
+
+window.registerEmail = async function(){
+
+let email = document.getElementById("email").value
+let password = document.getElementById("password").value
+
+try{
+
+await createUserWithEmailAndPassword(auth,email,password)
+
+alert("Register berhasil")
+
+}catch(e){
+
+alert(e.message)
+
+}
+
+}
+
+window.loginEmail = async function(){
+
+let email = document.getElementById("email").value
+let password = document.getElementById("password").value
+
+try{
+
+await signInWithEmailAndPassword(auth,email,password)
+
+alert("Login berhasil")
+
+}catch(e){
+
+alert(e.message)
+
+}
+
+}
+  
+</script>
+
+<!-- POPUP COMING SOON -->
+
+<div id="popup" class="popup-bg" style="display:none;">
+
+<div class="popup-box">
+
+<div class="popup-icon">🚀</div>
+
+<h2>Fitur Baru </h2>
+
+<p style="font-size:13px;color:#555;">
+Fitur sedang dikembangkan tim <strong>JuandyMall</strong>.<br>
+Segera hadir 🚀
+</p>
+
+<button onclick="closePopup()">Siap</button>
+
+</div>
+
+</div>
+
+<!-- POPUP LOGIN -->
+
+<div id="loginPopup" class="popup-bg" style="display:none;">
+
+<div class="popup-box">
+
+<h2>Login Akun</h2>
+
+<input id="email" type="email" placeholder="Email">
+
+<input id="password" type="password" placeholder="Password">
+
+<br><br>
+
+<button onclick="loginEmail()">Login Email</button>
+
+<button onclick="registerEmail()">Register Email</button>
+
+<br><br>
+
+<button onclick="loginGoogle()">Login Google</button>
+
+<br><br>
+
+<button onclick="closeLogin()">Tutup</button>
+</div>
+
+</div>
+</div>
+</div>
+  
+
+<script>
+
+function closeLogin(){
+document.getElementById("loginPopup").style.display="none";
+}
+
+function loginEmail(){
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+firebase.auth().signInWithEmailAndPassword(email,password)
+.then((userCredential)=>{
+
+let user = userCredential.user;
+
+if(user.emailVerified){
+
+alert("Login berhasil");
+
+}else{
+
+alert("Email belum diverifikasi. Silakan cek email kamu.");
+firebase.auth().signOut();
+
+}
+
+})
+.catch((error)=>{
+alert(error.message);
+});
+}
+
+function registerEmail(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+firebase.auth().createUserWithEmailAndPassword(email,password)
+
+.then(function(userCredential){
+
+let user = userCredential.user;
+
+user.sendEmailVerification()
+.then(function(){
+
+alert("Email verifikasi sudah dikirim. Silakan cek Gmail kamu.");
+
+});
+
+})
+
+.catch(function(error){
+
+alert(error.message);
+
+});
+
+}
+
+function loginGoogle(){
+
+const provider = new GoogleAuthProvider();
+
+signInWithPopup(auth,provider)
+.then(()=>{
+alert("Login Google berhasil");
+})
+.catch((error)=>{
+alert(error.message);
+});
+
+}
+
+</script>
+  
+</script>
+
+</body>
+</html>
