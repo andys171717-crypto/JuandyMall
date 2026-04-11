@@ -1558,7 +1558,7 @@ setMode('login');
   });
 
   // FUNGSI LOGOUT & AUTH
-  window.handleUserMenu = function() {
+window.handleUserMenu = function() {
     const dash = document.getElementById("userDashboard");
     dash.classList.toggle("active"); // Ini yang bikin menu geser
 
@@ -1568,6 +1568,50 @@ setMode('login');
         document.getElementById("dashUserEmail").innerText = user.email;
     }
 };
+   
+window.processLogout = function() {
+    if (confirm("Yakin ingin keluar dari JuandyMall?")) {
+        signOut(auth).then(() => {
+            location.reload(); 
+        }).catch((error) => {
+            alert("Gagal logout: " + error.message);
+        });
+    }
+  };
+
+  // 2. Fungsi Login Email & Daftar
+  window.loginEmail = async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      alert("Login Berhasil!");
+    } catch (e) { alert("Login Gagal: " + e.message); }
+  };
+
+  window.registerEmail = async () => {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+      alert("Daftar Berhasil! Silakan Login.");
+    } catch (e) { alert("Daftar Gagal: " + e.message); }
+  };
+
+  window.resetPassword = async () => {
+    const email = document.getElementById("email").value;
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert("Link reset dikirim ke email!");
+    } catch (e) { alert("Error: " + e.message); }
+  };
+
+  window.loginGoogle = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (e) { alert("Gagal Login Google: " + e.message); }
+  };
+
 
 // LOAD PRODUK
   window.db = db;
@@ -1593,7 +1637,8 @@ setMode('login');
   };
 
   // PENTING: Jalankan fungsi ini
-  loadFirebaseProducts();
+loadFirebaseProducts();
+    
 </script>
 
 <!-- POPUP COMING SOON -->
