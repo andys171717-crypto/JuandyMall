@@ -2148,7 +2148,8 @@ window.toggleEdit = function(){
   const city = document.getElementById("userCity")
   const province = document.getElementById("userProvince")
   const postal = document.getElementById("userPostal")
- const district = document.getElementById("userDistrict")
+
+ const district = document.getElementById("userDistrict")
   const village = document.getElementById("userVillage")
   
   if(!isEdit){
@@ -2161,7 +2162,8 @@ window.toggleEdit = function(){
     city.removeAttribute("readonly")
     province.removeAttribute("disabled")
     postal.removeAttribute("readonly")
-   district.removeAttribute("readonly")
+
+   district.removeAttribute("readonly")
     village.removeAttribute("readonly")
     
     card.classList.add("edit-mode")
@@ -2184,7 +2186,8 @@ window.toggleEdit = function(){
     city.setAttribute("readonly", true)
     province.setAttribute("disabled", true)
     postal.setAttribute("readonly", true)
-   district.setAttribute("readonly", true)
+
+   district.setAttribute("readonly", true)
     village.setAttribute("readonly", true)
     
     card.classList.remove("edit-mode")
