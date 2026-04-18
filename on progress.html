@@ -1,0 +1,2709 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JuandyMall</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+ 
+html{
+overflow-x:hidden;
+}
+
+body{
+margin:0;
+font-family:'Inter','Poppins',sans-serif;
+background:#f5f5f5;
+padding-top:70px;
+padding-bottom:120px;
+overflow-x:hidden;
+-webkit-overflow-scrolling:touch;
+touch-action:manipulation;
+}
+
+/* HEADER */
+
+.header{
+position:fixed;
+top:0;
+left:0;
+right:0;
+height:60px;
+background:linear-gradient(90deg,#2563eb,#1e3a8a);
+display:flex;
+align-items:center;
+padding:0 12px;
+gap:10px;
+z-index:9999;
+box-shadow:0 2px 8px rgba(0,0,0,0.15);
+
+transform:translateZ(0);
+will-change:transform;
+}
+
+.search-box{
+flex:1;
+height:40px;
+background:white;
+border-radius:25px;
+display:flex;
+align-items:center;
+padding:0 12px;
+gap:8px;
+}
+
+.search-box input{
+flex:1;
+border:none;
+outline:none;
+font-size:16px; /* Menambah ukuran font untuk teks */
+background:transparent;
+padding:8px 12px; /* Menambah padding agar teks tidak terlalu rapat dengan tepi */
+text-align: left; /* Pastikan teks berada di kiri */
+}
+
+/* ICON */
+
+.header-icons{
+display:flex;
+align-items:center;
+gap:14px;
+}
+
+.icon{
+color:white;
+font-size:20px;
+width:26px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
+cursor:pointer;
+}
+
+.badge{
+position:absolute;
+top:-4px;
+right:-6px;
+background:red;
+color:white;
+font-size:10px;
+padding:2px 5px;
+border-radius:10px;
+}
+
+/* BANNER */
+
+/* Perbaikan untuk animasi banner */
+/* CONTAINER BANNER */
+
+.banner{
+width:calc(100% - 24px);
+aspect-ratio:16/7;
+margin:12px auto;
+border-radius:16px;
+overflow:hidden;
+position:relative;
+z-index:1;
+box-shadow:0 6px 18px rgba(0,0,0,0.12);
+}
+
+/* SLIDER */
+
+.banner-slider{
+display:flex;
+height:100%;
+transition:transform 0.35s ease;
+}
+/* SETIAP SLIDE */
+
+.banner-slide{
+flex:0 0 100%;
+height:100%;
+}
+
+/* GAMBAR */
+
+.banner-slide img{
+width:100%;
+height:100%;
+object-fit:cover;
+display:block;
+}
+  
+.banner-dots{
+position:absolute;
+bottom:10px;
+left:50%;
+transform:translateX(-50%);
+display:flex;
+gap:6px;
+z-index:5;
+}
+
+.dot{
+width:8px;
+height:8px;
+background:rgba(255,255,255,0.6);
+border-radius:50%;
+transition:0.3s;
+}
+
+.dot.active{
+background:white;
+width:18px;
+border-radius:10px;
+}
+
+/* SHORTCUT MENU */
+
+.shortcuts{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+padding:12px;
+
+background:linear-gradient(135deg,#eef2ff,#f8fafc);
+
+border-radius:18px;
+box-shadow:0 6px 16px rgba(0,0,0,0.08);
+}
+
+.shortcut{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+padding:6px 4px;
+border-radius:10px;
+cursor:pointer;
+transition:0.25s;
+}
+
+.shortcut span{
+font-size:10px;
+font-weight:600;
+color:#1e293b;
+letter-spacing:0.2px;
+text-align:center;
+}
+
+.shortcut:hover{
+background:rgba(255,255,255,0.15);
+transform:translateY(-6px) scale(1.05);
+}
+
+.shortcut i{
+font-size:20px;
+width:36px;
+height:36px;
+border-radius:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+margin-bottom:6px;
+
+background:white;
+
+box-shadow:0 6px 14px rgba(0,0,0,0.12);
+}
+.more-shortcut i{
+background:#6b7280;
+}
+  
+/* CATEGORY */
+
+.category{
+display:flex;
+overflow-x:auto;
+gap:20px;
+padding:16px;
+background:white;
+}
+
+.category::-webkit-scrollbar{
+display:none;
+}
+
+.cat{
+text-align:center;
+min-width:70px;
+font-size:12px;
+}
+
+.circle{
+width:56px;
+height:56px;
+background:white;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+margin-bottom:8px;
+font-size:24px;
+box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+
+.shortcut:nth-child(1) i{color:#ff4d4f;}
+.shortcut:nth-child(2) i{color:#1890ff;}
+.shortcut:nth-child(3) i{color:#52c41a;}
+.shortcut:nth-child(4) i{color:#fa8c16;}
+.shortcut:nth-child(5) i{color:#722ed1;}
+.shortcut:nth-child(6) i{color:#eb2f96;}
+.shortcut:nth-child(7) i{color:#13c2c2;}
+.shortcut:nth-child(8) i{color:#faad14;}
+  
+.shortcut:active{
+transform:scale(0.92);
+transition:0.2s;
+}
+  
+/* PRODUCTS */
+
+.products{
+padding:14px;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:16px;
+}
+
+.product:hover{
+transform:translateY(-4px);
+box-shadow:0 12px 24px rgba(0,0,0,0.12);
+transition:0.25s;
+}
+
+.product{
+background:white;
+border-radius:12px;
+overflow:hidden;
+box-shadow:0 2px 6px rgba(0,0,0,0.08);
+transition:0.25s;
+position:relative;
+}
+  
+.product:active{
+transform:scale(0.97);
+transition:0.2s;
+}
+  
+.product img{
+width:100%;
+height:150px;
+object-fit:cover;
+cursor:pointer;
+transition:0.3s;
+}
+
+.product:hover img{
+transform:scale(1.05);
+}
+  
+.discount{
+position:absolute;
+top:10px;
+left:10px;
+background:red;
+color:white;
+font-size:11px;
+padding:4px 8px;
+border-radius:6px;
+z-index:2;
+}
+  
+.favorite{
+position:absolute;
+top:10px;
+right:10px;
+background:white;
+width:28px;
+height:28px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 2px 6px rgba(0,0,0,0.2);
+font-size:14px;
+color:#e74c3c;
+cursor:pointer;
+}
+
+.info{
+padding:12px;
+display:flex;
+flex-direction:column;
+gap:4px;
+}
+
+.product-title{
+font-size:14px;
+font-weight:600;
+line-height:1.35;
+color:#111827;
+margin-top:4px;
+
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.price{
+color:#2563eb;
+font-size:18px;
+font-weight:800;
+margin-top:6px;
+letter-spacing:0.3px;
+}
+
+.stock{
+font-size:11px;
+color:#888;
+margin-top:2px;
+}
+  
+.rating{
+font-size:13px;
+color:#f59e0b;
+font-weight:600;
+display:flex;
+align-items:center;
+gap:4px;
+}
+
+.rating .reviews{
+color:#6b7280;
+font-weight:500;
+}
+
+.sold{
+font-size:12px;
+color:#ef4444;
+font-weight:600;
+}
+  
+.review-count{
+font-size:11px;
+color:#777;
+}
+
+/* BADGE KATEGORI PRODUK */
+
+.category-tag{
+display:inline-block;
+font-size:10px;
+background:#eef2ff;
+color:#2563eb;
+padding:2px 6px;
+border-radius:6px;
+margin-top:2px;
+font-weight:600;
+}
+  
+.actions{
+display:flex;
+gap:6px;
+padding:10px;
+margin-top:6px;
+}
+
+.btn{
+flex:1;
+border:none;
+height:34px;
+border-radius:10px;
+color:white;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+transition:0.2s;
+}
+  
+.btn:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 12px rgba(0,0,0,0.15);
+}
+  
+.btn:active{
+transform:scale(0.95);
+}
+
+.cartbtn{background:#27ae60;width:40px;flex:none;}
+.buy{background:#2563eb;}
+
+/* DETAIL */
+
+.detail{
+display:none;
+padding:16px;
+}
+
+.detail img{
+width:100%;
+border-radius:14px;
+}
+
+.detail-title{
+font-size:20px;
+font-weight:bold;
+margin-top:10px;
+}
+
+.detail-price{
+font-size:24px;
+color:#2563eb;
+font-weight:bold;
+}
+
+.detail-stock{
+font-size:14px;
+color:#555;
+margin-top:6px;
+}
+  
+/* PRODUCT REVIEWS */
+
+.reviews{
+margin-top:20px;
+}
+
+.review{
+background:#fff;
+padding:10px;
+border-radius:10px;
+margin-top:10px;
+box-shadow:0 2px 6px rgba(0,0,0,0.05);
+}
+
+.review-stars{
+color:#f1c40f;
+font-size:14px;
+}
+
+.review-text{
+font-size:13px;
+color:#444;
+margin-top:4px;
+}
+
+/* CART */
+
+.cartpage{
+display:none;
+padding:16px;
+}
+
+.cart-item{
+background:white;
+padding:12px;
+border-radius:10px;
+margin-bottom:10px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+/* ADMIN PANEL */
+
+.adminpanel{
+display:none;
+padding:16px;
+background:white;
+margin:16px;
+border-radius:12px;
+}
+
+.adminpanel input,
+.adminpanel textarea{
+width:100%;
+padding:8px;
+margin-bottom:8px;
+}
+
+/* BOTTOM */
+
+.bottom{
+position:fixed;
+bottom:0;
+left:0;
+width:100%;
+height:65px;
+
+background:linear-gradient(90deg,#2563eb,#1d4ed8);
+
+display:flex;
+justify-content:space-around;
+align-items:center;
+
+box-shadow:0 -4px 20px rgba(0,0,0,0.15);
+
+z-index:999;
+  
+transform:translateZ(0);
+will-change:transform;
+}
+
+.bottom div{
+display:flex;
+flex-direction:column;
+align-items:center;
+font-size:11px;
+color:#ffffff;
+cursor:pointer;
+transition:0.2s;
+}
+
+.bottom i{
+font-size:20px;
+margin-bottom:3px;
+}
+
+.bottom .active{
+color:#facc15;
+font-weight:600;
+}
+  
+/* ================= */
+/* POPUP STYLE */
+/* ================= */
+/* popup background */
+.popup-bg{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:rgba(0,0,0,0.25);
+backdrop-filter:blur(1px);
+z-index:999;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+}
+to{
+opacity:1;
+}
+}
+
+/* popup box */
+.popup-box{
+position:relative;
+background:linear-gradient(135deg,#eff6ff,#dbeafe);
+padding:16px;
+border-radius:12px;
+width:320px;
+text-align:center;
+box-shadow:0 10px 28px rgba(0,0,0,0.15);
+animation:popupShow 0.25s cubic-bezier(.4,0,.2,1);
+}
+.popup-box::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:5px;
+background:linear-gradient(90deg,#2563eb,#1e3a8a);
+}
+
+@keyframes popupShow{
+from{
+transform:translateY(10px) scale(0.95);
+opacity:0;
+}
+to{
+transform:translateY(0) scale(1);
+opacity:1;
+}
+}
+
+.popup-icon{
+font-size:26px;
+margin-bottom:12px;
+animation:iconPop 0.4s ease;
+}
+
+@keyframes iconPop{
+from{
+transform:scale(0.5);
+opacity:0;
+}
+to{
+transform:scale(1);
+opacity:1;
+}
+}
+
+.popup-box h2{
+font-size:14px;
+font-weight:700;
+font-family:'Poppins',sans-serif;
+color:#1e3a8a;
+letter-spacing:0.3px;
+margin:6px 0;
+}
+.popup-box p{
+font-size:13px;
+color:#1e293b;
+line-height:1.5;
+}
+.popup-box button{
+margin-top:12px;
+width:100%;
+background:linear-gradient(135deg,#2563eb,#1d4ed8);
+border:none;
+color:white;
+padding:9px 22px;
+border-radius:10px;
+font-size:13px;
+font-weight:600;
+cursor:pointer;
+box-shadow:0 6px 16px rgba(37,99,235,0.35);
+transition:0.25s;
+}
+.popup-box button:hover{
+transform:translateY(-2px);
+box-shadow:0 6px 15px rgba(0,0,0,0.15);
+}
+
+  /* Style input umum tetap */
+.popup-box input{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:14px;
+box-sizing:border-box;
+display:block; /* Pastikan terlihat */
+}
+
+/* KHUSUS UNTUK CONTAINER PASSWORD */
+.password-container {
+position: relative;
+width: 100%;
+}
+
+/* Input password diberi padding kanan agar teks tidak tertutup ikon */
+.password-container input {
+padding-right: 40px !important; 
+}
+
+/* Style Ikon Mata */
+.toggle-password {
+position: absolute;
+right: 12px;
+top: 50%;
+transform: translateY(-50%);
+cursor: pointer;
+color: #888;
+font-size: 16px;
+z-index: 10; /* Pastikan di atas input */
+}
+
+/* LOGIN DIVIDER */
+
+.login-divider{
+text-align:center;
+margin:12px 0;
+color:#888;
+font-size:14px;
+position:relative;
+}
+
+.login-divider:before,
+.login-divider:after{
+content:"";
+position:absolute;
+top:50%;
+width:40%;
+height:1px;
+background:#ddd;
+}
+
+.login-divider:before{
+left:0;
+}
+
+.login-divider:after{
+right:0;
+}
+
+.user-dashboard {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  height: calc(100% - 65px);
+  bottom: 65px;
+
+  background: #f4f4f4;
+  z-index: 10005;
+  transition: 0.4s ease;
+
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.user-dashboard.active { right: 0 !important; }
+
+/* Custom Alert Style */
+.custom-alert-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); 
+    backdrop-filter: blur(3px);
+    display: none; justify-content: center;
+    align-items: center; z-index: 100000; /* Z-index sangat tinggi agar selalu di depan */
+    font-family: 'Poppins', sans-serif;
+}
+.custom-alert-box {
+    background: white; 
+    padding: 30px 20px;
+    border-radius: 20px;
+    width: 85%; max-width: 320px; text-align: center;
+    position: relative;
+    /* EFEK BAYANGAN BIRU DI ATAS KOTAK */
+    box-shadow: 0 -10px 25px rgba(37, 99, 235, 0.2), 0 15px 35px rgba(0,0,0,0.1);
+    animation: popupMuncul 0.3s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+/* Garis aksen Navy di paling atas */
+.custom-alert-box::before {
+    content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+    background: #1a237e; border-radius: 20px 20px 0 0;
+}
+.custom-alert-box p {
+    color: #333; font-size: 16px; margin-bottom: 25px; line-height: 1.5;
+}
+.custom-alert-box p strong {
+    color: #1a237e; font-weight: 800;
+}
+.custom-alert-box button {
+    background: #2563eb; color: white; border: none;
+    padding: 12px; border-radius: 12px; cursor: pointer;
+    font-weight: 600; width: 100%; font-size: 15px;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    transition: 0.2s;
+}
+@keyframes popupMuncul {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+/* 🔒 HILANGKAN FOCUS SAAT READONLY */
+input[readonly]:focus,
+textarea[readonly]:focus{
+  outline: none;
+  box-shadow: none;
+  border:1px solid #e5e7eb;
+  caret-color: transparent;
+}
+  
+.edit-mode input,
+.edit-mode textarea{
+  background:#fff;
+  border:1px solid #2563eb;
+}
+    
+/* ========================= */
+/* BUTTON PROFILE UPGRADE */
+/* ========================= */
+
+.btn-edit, .btn-save{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  font-weight:600;
+  font-size:14px;
+  border:none;
+  transition:0.25s;
+}
+
+/* tombol edit */
+.btn-edit{
+  background:#f3f4f6;
+  color:#111;
+}
+
+/* tombol simpan */
+.btn-save{
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  color:white;
+  box-shadow:0 6px 16px rgba(37,99,235,0.35);
+}
+
+/* efek klik */
+.btn-edit:active,
+.btn-save:active{
+  transform:scale(0.96);
+}
+    
+/* LOCK SELECT SAAT DISABLED */
+select:disabled {
+  pointer-events: none;
+  background:#f3f4f6;
+  color:#6b7280;
+}
+  
+/* LOCK DATE SAAT READONLY */
+input[type="date"][readonly] {
+  background:#f3f4f6;
+  color:#6b7280;
+}
+  
+/* 🔒 READONLY SERAGAM */
+input[readonly],
+textarea[readonly],
+select:disabled{
+  background:#f3f4f6;
+  color:#6b7280;
+  border:1px solid #e5e7eb;
+  font-weight:500;
+  cursor:not-allowed;
+}
+
+/* EMAIL beda biar keliatan penting */
+#userEmail{
+  background:#eef2ff;
+  color:#4f46e5;
+  font-weight:600;
+}
+
+/* UMUR (auto) */
+#userAge{
+  background:#f3f4f6;
+  color:#6b7280;
+  font-style:normal;
+}
+
+/* ✏️ SAAT MODE EDIT */
+.edit-mode input,
+.edit-mode textarea,
+.edit-mode select{
+  background:#ffffff;
+  color:#111827;
+  border:1px solid #2563eb;
+  box-shadow:0 0 0 2px rgba(37,99,235,0.1);
+}
+  
+/* ✅ STYLE UTAMA INPUT (SATU SUMBER) */
+.input-style{
+  width:100%;
+  padding:12px;
+  border-radius:12px;
+  border:1px solid #e5e7eb;
+  margin-bottom:12px;
+
+  background:#f9fafb;
+  color:#111827;
+
+  font-size:14px;
+  font-weight:500;
+}
+
+/* TEXTAREA */
+textarea.input-style{
+  min-height:80px;
+}
+
+/* EMAIL KHUSUS */
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+<div id="customAlert" class="custom-alert-overlay">
+    <div class="custom-alert-box">
+        <p id="customAlertMessage"></p>
+        <button onclick="closeAlert()">Oke</button>
+    </div>
+</div>
+
+<div class="header">
+
+<div class="search-box">
+<i class="fa-solid fa-magnifying-glass"></i>
+<input id="search" placeholder="Cari produk di JuandyMall">
+</div>
+
+<div class="header-icons">
+
+<div class="icon">
+<i class="fa-solid fa-bell"></i>
+</div>
+
+<div class="icon" onclick="openCart()">
+<i class="fa-solid fa-cart-shopping"></i>
+<span class="badge" id="cartcount">0</span>
+</div>
+
+<div class="icon">
+<i class="fa-solid fa-comment-dots"></i>
+</div>
+
+</div>
+</div>
+  
+<div class="banner">
+
+<div class="banner-slider">
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600">
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1555529669-e69e7aa0ba9a?w=600">
+</div>
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082350899-7e105aa886ae?w=600">
+</div>
+
+<!-- CLONE SLIDE PERTAMA -->
+
+<div class="banner-slide">
+<img src="https://images.unsplash.com/photo-1607082349566-187342175e2f?w=600">
+</div>
+
+</div>
+  
+<div class="banner-dots">
+<div class="dot active"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+
+</div>
+
+<!-- SHORTCUT MENU -->
+
+<div class="shortcuts">
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-bolt"></i>
+<span>Promo</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-mobile-screen"></i>
+<span>Pulsa</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-gamepad"></i>
+<span>Game</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-shirt"></i>
+<span>Fashion</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-gift"></i>
+<span>Gratis</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-tag"></i>
+<span>Diskon</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-truck"></i>
+<span>Ongkir</span>
+</div>
+
+<div class="shortcut" onclick="comingSoon()">
+<i class="fa-solid fa-ellipsis"></i>
+<span>Lainnya</span>
+</div>
+
+</div>
+
+<div class="products" id="productList"></div>
+
+<div class="detail" id="detailPage">
+
+<button onclick="home()">⬅ kembali</button>
+
+<img id="dimg">
+
+<div class="detail-title" id="dtitle"></div>
+<div class="detail-price" id="dprice"></div>
+<div class="detail-stock" id="dstok"></div>
+<div id="ddesc" style="margin:10px 0;color:#555"></div>
+  
+<!-- ULASAN PRODUK -->
+
+<div class="reviews">
+
+<h3>Ulasan Pembeli</h3>
+
+<div class="review">
+<div class="review-stars">⭐⭐⭐⭐⭐</div>
+<div class="review-text">Produk bagus dan sesuai.</div>
+</div>
+
+<div class="review">
+<div class="review-stars">⭐⭐⭐⭐</div>
+<div class="review-text">Pengiriman cepat.</div>
+</div>
+
+</div>
+
+<button onclick="addCartDetail()"
+style="width:100%;padding:12px;background:#27ae60;color:white;border:none;border-radius:10px">
+Tambah Keranjang
+</button>
+</div>
+  
+<div class="cartpage" id="cartPage">
+
+<h3>Keranjang</h3>
+
+<div id="cartItems"></div>
+
+<h3>Total: <span id="totalCart">Rp0</span></h3>
+
+<button onclick="checkout()"
+style="width:100%;padding:12px;background:#2563eb;color:white;border:none;border-radius:8px">
+Checkout
+</button>
+
+</div>
+
+<div class="adminpanel" id="adminPanel">
+
+<h3>Admin Panel</h3>
+
+<input id="pname" placeholder="Nama produk">
+<input id="pprice" placeholder="Harga">
+<input id="pstock" placeholder="Stok produk">
+<input id="pcategory" placeholder="Kategori produk">
+<textarea id="pdesc" placeholder="Deskripsi produk"></textarea>
+<input type="file" id="pimg">
+
+<button onclick="addProduct()">Tambah / Update Produk</button>
+
+<h4>Daftar Produk</h4>
+
+<div id="adminList"></div>
+
+</div>
+
+<div class="bottom">
+
+<div onclick="home()">
+<i class="fa-solid fa-house"></i>
+Home
+</div>
+
+<div onclick="comingSoon()">
+<i class="fa-solid fa-fire"></i>
+Promo
+</div>
+
+<div onclick="comingSoon()">
+<i class="fa-solid fa-layer-group"></i>
+Kategori
+</div>
+  
+<div onclick="openAccount()">
+<i class="fa-solid fa-user-circle"></i>
+Akun
+</div>
+
+</div>
+
+<script>
+
+
+/* SCRIPT ASLI + FITUR EDIT PRODUK */
+
+const productList=document.getElementById("productList")
+const search=document.getElementById("search")
+const cartcount=document.getElementById("cartcount")
+const detailPage=document.getElementById("detailPage")
+const cartPage=document.getElementById("cartPage")
+const adminPanel=document.getElementById("adminPanel")
+
+const dimg=document.getElementById("dimg")
+const dtitle=document.getElementById("dtitle")
+const dprice=document.getElementById("dprice")
+const ddesc=document.getElementById("ddesc")
+const dstok=document.getElementById("dstok")
+
+const cartItems=document.getElementById("cartItems")
+const totalCart=document.getElementById("totalCart")
+
+const adminList=document.getElementById("adminList")
+
+const pname=document.getElementById("pname")
+const pprice=document.getElementById("pprice")
+const pstock=document.getElementById("pstock")
+const pcategory=document.getElementById("pcategory")
+const pdesc=document.getElementById("pdesc")
+const pimg=document.getElementById("pimg")
+
+let editIndex=-1
+
+let productData=[]
+
+let savedCart=localStorage.getItem("cart")
+let cart=savedCart?JSON.parse(savedCart):[]
+
+let savedFav = localStorage.getItem("wishlist")
+let wishlist = savedFav ? JSON.parse(savedFav) : []
+
+let selectedProduct=null
+let selectedProductIndex=-1
+let currentList=[...productData]
+
+updateCartCount()
+
+function saveCart(){
+localStorage.setItem("cart",JSON.stringify(cart))
+}
+    
+function updateCartCount(){
+let total = cart.reduce((sum, item) => sum + (item.qty || 1), 0)
+cartcount.innerText = total
+}
+
+function rupiah(x){
+return "Rp"+x.toLocaleString()
+}
+  
+function hitungUmur(tanggal){
+  if(!tanggal) return ""
+
+  const today = new Date()
+  const birth = new Date(tanggal)
+
+  let age = today.getFullYear() - birth.getFullYear()
+  const m = today.getMonth() - birth.getMonth()
+
+  if(m < 0 || (m === 0 && today.getDate() < birth.getDate())){
+    age--
+  }
+
+  return age + " tahun"
+}  
+  
+function loadProducts(list=productData){
+
+currentList=list
+
+let html=""
+
+list.forEach((p,i)=>{
+let realIndex = productData.indexOf(p)
+
+html+=`
+
+<div class="product">
+
+<div class="discount">-20%</div>
+
+<div class="favorite" onclick="toggleFav(${realIndex},this)">
+<i class="${wishlist.includes(realIndex)?'fa-solid':'fa-regular'} fa-heart"></i>
+</div>
+
+<img src="${p.img}" onclick="openDetail(${realIndex})">
+
+<div class="info">
+
+<div class="product-title">${p.name}</div>
+<div class="category-tag">${p.category||""}</div>
+<div class="rating">⭐ 4.8 <span class="review-count">(120)</span></div>
+<div class="sold">🔥 120 terjual</div>
+<div class="price">${rupiah(p.price)}</div>
+<div class="stock">Stok: ${p.stock}</div>
+
+</div>
+
+<div class="actions">
+
+<button class="btn cartbtn" onclick="addCart(${realIndex})">
+<i class="fa-solid fa-cart-shopping"></i>
+</button>
+
+<button class="btn buy" onclick="buyNow(${realIndex})">
+Beli
+</button>
+
+</div>
+
+</div>
+
+`
+})
+
+productList.innerHTML=html
+
+}
+
+search.addEventListener("input",function(){
+
+let key=this.value.toLowerCase()
+
+let result = productData.filter(p =>
+(p.name || "").toLowerCase().includes(key)
+)
+
+loadProducts(result)
+
+})
+
+function openDetail(i){
+let p = productData[i]
+if(!p)return
+
+selectedProductIndex = i
+
+productList.style.display="none"
+detailPage.style.display="block"
+cartPage.style.display="none"
+
+dimg.src=p.img
+dtitle.innerText=p.name
+dprice.innerText=rupiah(p.price)
+ddesc.innerText=p.desc||""
+dstok.innerText="Stok: "+p.stock
+
+}
+
+function addCart(i){
+
+let p = productData[i]
+
+let existing = cart.find(item => item.name === p.name)
+
+if(existing){
+existing.qty = (existing.qty || 1) + 1
+}else{
+cart.push({...p, qty:1})
+}
+
+updateCartCount()
+saveCart()
+
+}
+
+function addCartDetail(){
+
+if(selectedProductIndex==-1)return
+
+let p = productData[selectedProductIndex]
+
+let existing = cart.find(item => item.name === p.name)
+
+if(existing){
+existing.qty = (existing.qty || 1) + 1
+}else{
+cart.push({...p, qty:1})
+}
+
+updateCartCount()
+saveCart()
+
+}
+
+function openCart(){
+
+window.scrollTo(0,0)
+
+productList.style.display="none"
+detailPage.style.display="none"
+cartPage.style.display="block"
+
+renderCart()
+
+}
+
+function renderCart(){
+
+let html=""
+let total=0
+
+cart.forEach((c,i)=>{
+
+html+=`
+
+<div class="cart-item">
+
+<div>
+${c.name} (x${c.qty || 1})<br>
+<b>${rupiah(c.price)}</b>
+</div>
+
+<button onclick="removeCart(${i})">Hapus</button>
+
+</div>
+
+`
+
+  total += c.price * (c.qty || 1)
+
+})
+
+cartItems.innerHTML=html||"Keranjang kosong"
+totalCart.innerText=rupiah(total)
+
+}
+
+function removeCart(i){
+
+cart.splice(i,1)
+updateCartCount()
+saveCart()
+renderCart()
+
+}
+
+function buyNow(i){
+let p = productData[i]
+if(!p)return
+
+let realIndex = productData.indexOf(p)
+
+if(productData[realIndex].stock <= 0){
+showToast("Stok habis")
+return
+}
+
+productData[realIndex].stock = Math.max(0, productData[realIndex].stock - 1)
+
+let existing = cart.find(item => item.name === p.name)
+
+if(existing){
+existing.qty = (existing.qty || 1) + 1
+}else{
+cart.push({...p, qty:1})
+}
+
+updateCartCount()
+saveCart()
+
+openCart()
+
+}
+
+function checkout(){
+
+showToast("Checkout berhasil!", true)
+
+cart=[]
+updateCartCount()
+saveCart()
+
+renderCart()
+home()
+
+}
+
+function home(){
+    
+window.scrollTo(0,0)
+
+productList.style.display="grid"
+detailPage.style.display="none"
+cartPage.style.display="none"
+adminPanel.style.display="none"
+loadProducts(productData)
+  
+}
+
+function addProduct(){
+
+let name=pname.value.trim()
+let price=pprice.value.trim()
+let stock=pstock.value.trim()
+let category=pcategory.value.trim()
+let desc=pdesc.value.trim()
+let file=pimg.files[0]
+
+if(name==""||price==""||stock==""){
+showToast("Isi semua data produk")
+return
+}
+
+if(isNaN(price)||isNaN(stock)){
+showToast("Harga dan stok harus angka")
+return
+}
+
+if(editIndex==-1){
+
+if(!file){
+showToast("Pilih gambar")
+return
+}
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+let newProduct={
+name:name,
+price:Number(price),
+stock:Number(stock),
+category:category,
+desc:desc,
+img:e.target.result
+}
+
+productData.push(newProduct)
+  
+currentList=[...productData]
+
+saveProductFirebase(newProduct)
+
+loadProducts()
+renderAdmin()
+
+}
+
+reader.readAsDataURL(file)
+
+}else{
+
+productData[editIndex].name=name
+productData[editIndex].price=Number(price)
+productData[editIndex].stock=Number(stock)
+productData[editIndex].category=category
+productData[editIndex].desc=desc
+
+if(file){
+
+let reader=new FileReader()
+
+reader.onload=function(e){
+
+productData[editIndex].img=e.target.result
+
+loadProducts()
+renderAdmin()
+
+}
+
+reader.readAsDataURL(file)
+
+}else{
+
+loadProducts()
+renderAdmin()
+
+}
+
+editIndex=-1
+
+}
+
+pname.value=""
+pprice.value=""
+pstock.value=""
+pcategory.value=""
+pdesc.value=""
+pimg.value=""
+
+}
+
+function renderAdmin(){
+
+let html=""
+
+productData.forEach((p,i)=>{
+
+html+=`
+
+<div style="margin-bottom:6px">
+
+${p.name} - ${rupiah(p.price)} (stok ${p.stock})
+
+<button onclick="startEdit(${i})">edit</button>
+<button onclick="deleteProduct(${i})">hapus</button>
+
+</div>
+
+`
+
+})
+
+adminList.innerHTML=html
+
+}
+
+function startEdit(i){
+
+let p=productData[i]
+
+pname.value=p.name
+pprice.value=p.price
+pstock.value=p.stock
+pcategory.value=p.category||""
+pdesc.value=p.desc
+
+editIndex=i
+
+}
+
+async function deleteProduct(i){
+
+let product = productData[i]
+
+if(product.id){
+await window.deleteDoc(window.doc(window.db,"products",product.id))
+}
+
+await window.loadFirebaseProducts()
+
+renderAdmin()
+
+}
+
+</script>
+<script>
+// Kode JavaScript lainnya yang sudah ada...
+
+// Kode untuk animasi banner dan pergantian gambar
+/* BANNER FINAL STABLE */
+
+const bannerSlider = document.querySelector(".banner-slider");
+const slides = document.querySelectorAll(".banner-slide");
+const dots = document.querySelectorAll(".dot");
+
+let index = 0;
+let total = slides.length;
+
+function updateBanner(){
+
+bannerSlider.style.transform =
+"translateX(-"+(index*100)+"%)";
+
+dots.forEach(d=>d.classList.remove("active"));
+
+let dotIndex = index % dots.length;
+
+dots[dotIndex].classList.add("active");
+
+}
+
+function nextBanner(){
+
+index++;
+
+updateBanner();
+
+if(index === total-1){
+
+setTimeout(()=>{
+
+bannerSlider.style.transition="none";
+index = 0;
+bannerSlider.style.transform="translateX(0%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.35s ease";
+},50);
+
+},450);
+
+}
+
+}
+
+let autoSlide=setInterval(nextBanner,4000);
+
+updateBanner();
+
+/* SWIPE */
+
+/* SWIPE STABIL */
+
+let startX = 0;
+
+bannerSlider.addEventListener("touchstart", (e)=>{
+
+startX = e.touches[0].clientX;
+
+clearInterval(autoSlide);
+
+});
+
+bannerSlider.addEventListener("touchend", (e)=>{
+
+let endX = e.changedTouches[0].clientX;
+
+let move = endX - startX;
+
+if(move < -50){
+index = Math.min(index + 1, total - 1);
+}
+else if(move > 50){
+index = Math.max(index - 1, 0);
+}
+
+if(index < 0){
+
+bannerSlider.style.transition="none";
+
+index = total-2;
+
+bannerSlider.style.transform =
+"translateX(-"+(index*100)+"%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.35s ease";
+},50);
+
+}
+
+updateBanner();
+
+/* FIX CLONE SLIDE */
+
+if(index === total-1){
+
+setTimeout(()=>{
+
+bannerSlider.style.transition="none";
+index = 0;
+bannerSlider.style.transform="translateX(0%)";
+
+setTimeout(()=>{
+bannerSlider.style.transition="transform 0.35s ease";
+},50);
+
+},350);
+
+}
+
+autoSlide = setInterval(nextBanner,4000);
+
+});
+
+/* POPUP SCRIPT */
+
+function comingSoon(){
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+  
+// =======================
+// HALAMAN AKUN
+// =======================
+
+function openAccount(){
+document.getElementById("loginPopup").style.display="flex";
+setMode('login');
+}
+
+</script>
+ 
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getFirestore, collection, getDocs, addDoc, deleteDoc, doc, updateDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut, sendEmailVerification, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAiYudqXkV1Gh2tvxmBsVD8n4l-OEqrZ-Y",
+    authDomain: "juandymall.firebaseapp.com",
+    projectId: "juandymall",
+    storageBucket: "juandymall.firebasestorage.app",
+    messagingSenderId: "583810438665",
+    appId: "1:583810438665:web:0d1fb697ce6b9087784ad8"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const db = getFirestore(app);
+  const auth = getAuth(app);
+  const provider = new GoogleAuthProvider();
+
+  // --- TAHAP 1: PERBAIKAN LOGIKA ADMIN & PRODUK ---
+  onAuthStateChanged(auth, async (user) => {
+    const akunMenu = document.querySelector(".bottom div[onclick='openAccount()']");
+    const oldBtn = document.getElementById("adminShortcutBtn");
+    if(oldBtn) oldBtn.remove();
+
+  // ❗ BLOK USER BELUM VERIFIKASI
+if (user && !user.emailVerified) {
+  await signOut(auth);
+  showToast("Harap verifikasi email terlebih dahulu");
+}
+
+// ✅ HANYA USER VERIFIED YANG DIANGGAP LOGIN
+if (user && user.emailVerified) {
+
+  document.getElementById("loginPopup").style.display = "none";
+
+  const { getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+
+  const snap = await getDoc(doc(db, "users", user.uid))
+
+let emailName = user.email.split("@")[0]
+
+// potong biar gak panjang
+let shortEmail = emailName.length > 8 
+  ? emailName.substring(0,8) + "..." 
+  : emailName
+
+let userName = shortEmail
+
+// ✅ kalau ada nama → pakai nama
+if(snap.exists()){
+  const data = snap.data()
+
+  if(data.name && data.name.trim() !== ""){
+    userName = data.name
+  }
+}
+
+// kapital depan
+userName = userName.charAt(0).toUpperCase() + userName.slice(1)
+
+  if(akunMenu) {
+    akunMenu.innerHTML = `<i class="fa-solid fa-user-check" style="color:#facc15"></i><span style="color:#facc15; font-weight:bold;">${userName}</span>`;
+    akunMenu.setAttribute("onclick", "handleUserMenu()");
+  }
+
+  // 🔐 CEK ROLE ADMIN
+try {
+  const { getDoc, doc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+  const docSnap = await getDoc(doc(db, "users", user.uid));
+
+  const ADMIN_EMAIL = "jjuandy113@gmail.com";
+
+  if (
+    user.email === ADMIN_EMAIL ||
+    (docSnap.exists() && docSnap.data().role === "admin")
+  ) {
+    buatTombolAdminMelayang();
+  }
+
+} catch (e) {
+  console.error("Gagal cek admin:", e);
+}
+
+}
+      
+    loadFirebaseProducts();
+  });
+
+  // WAJIB ADA: Fungsi yang membuat tombolnya muncul secara fisik
+  function buatTombolAdminMelayang() {
+    if(document.getElementById("adminShortcutBtn")) return;
+    const btn = document.createElement("div");
+    btn.id = "adminShortcutBtn";
+    btn.innerHTML = `<i class="fa-solid fa-screwdriver-wrench"></i>`;
+    btn.style = "position:fixed; bottom:85px; right:20px; background:#1e3a8a; color:white; width:50px; height:50px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; box-shadow:0 4px 12px rgba(0,0,0,0.3); z-index:9999; cursor:pointer;";
+    btn.onclick = () => {
+      home(); 
+      document.getElementById("productList").style.display = "none";
+      document.getElementById("adminPanel").style.display = "block";
+      renderAdmin();
+    };
+    document.body.appendChild(btn);
+  }
+
+  window.logout = function() {
+    auth.signOut().then(() => { location.reload(); });
+  };
+
+  // FUNGSI LOGOUT & AUTH
+window.handleUserMenu = async function() {
+    const dash = document.getElementById("userDashboard");
+    dash.classList.toggle("active"); // Ini yang bikin menu geser
+
+    const user = auth.currentUser;
+
+if (user) {
+  
+  const { getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+
+  const snap = await getDoc(doc(db, "users", user.uid))
+
+let emailName = user.email.split("@")[0]
+
+// potong biar gak panjang
+let shortEmail = emailName.length > 8 
+  ? emailName.substring(0,8) + "..." 
+  : emailName
+
+let finalName = shortEmail
+
+// kalau ada nama di database → pakai
+if(snap.exists()){
+  const data = snap.data()
+
+  if(data.name && data.name.trim() !== ""){
+    finalName = data.name
+  }
+}
+
+// tampilkan
+document.getElementById("dashUserName").innerText = finalName
+
+  loadUserData(user.uid)
+}
+};
+   
+window.processLogout = function() {
+    // 1. Tampilkan popup dengan pesan konfirmasi
+    showToast("Yakin ingin keluar dari <strong>JuandyMall</strong>?", false);
+    
+    // 2. Ambil kotak alert dan pastikan bersih dari tombol lama
+    const alertBox = document.querySelector(".custom-alert-box");
+    
+    // Hapus semua tombol yang ada di dalam alertBox agar tidak menumpuk
+    const buttons = alertBox.querySelectorAll("button");
+    buttons.forEach(btn => btn.remove());
+
+    // 3. Buat container tombol baru dengan gaya Flexbox
+    const btnGroup = document.createElement("div");
+    btnGroup.style.display = "flex";
+    btnGroup.style.gap = "10px";
+    btnGroup.style.marginTop = "20px";
+
+    // 4. Masukkan 2 tombol saja: Batal dan Keluar
+    btnGroup.innerHTML = `
+        <button id="cancelLogout" style="background:#f3f4f6; color:#374151; flex:1; box-shadow:none; border-radius:12px; padding:12px; border:none; font-weight:600; cursor:pointer;">Batal</button>
+        <button id="confirmLogout" style="background:#ef4444; color:white; flex:1; border-radius:12px; padding:12px; border:none; font-weight:600; cursor:pointer;">Ya, Keluar</button>
+    `;
+    
+    alertBox.appendChild(btnGroup);
+
+    // 5. Logika Tombol Batal (Hanya menutup popup)
+    document.getElementById("cancelLogout").onclick = () => {
+        closeAlert();
+    };
+
+    // 6. Logika Tombol Keluar (Proses Logout)
+    document.getElementById("confirmLogout").onclick = () => {
+        signOut(auth).then(() => { 
+            location.reload(); 
+        }).catch((error) => {
+            console.error("Logout Gagal:", error);
+        });
+    };
+};
+
+// 1. Perbaikan Fungsi showToast agar warna & UI seragam (Modern JuandyMall)
+window.showToast = function(message, isSuccess = false) {
+    const modal = document.getElementById("customAlert");
+    const messageElement = document.getElementById("customAlertMessage");
+    const alertBox = document.querySelector(".custom-alert-box");
+    const alertBtn = alertBox.querySelector("button");
+
+    messageElement.innerHTML = message;
+    
+    // PERBAIKAN WARNA: Hijau jika 
+    if (isSuccess) {
+        alertBtn.style.background = "#2563eb"; 
+        alertBtn.innerText = "Lanjut";
+    } else {
+        alertBtn.style.background = "#2563eb"; 
+        alertBtn.innerText = "Oke, Siap!";
+    }
+
+    modal.style.display = "flex";
+};
+  // 🔽 TAMBAHKAN DI SINI
+function isValidEmail(email){
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+// 2. Perbaikan Login dengan Kalimat Manusiawi
+window.loginEmail = async () => {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    // Perbaikan: Gunakan showToast, bukan alert() bawaan browser
+    if(!email || !password) {
+        showToast("Ups! Email dan Password harus diisi ya.");
+        return;
+    }
+    if(!isValidEmail(email)){
+    showToast("Email tidak valid");
+    return;
+    }
+
+     if(password.length < 6){
+    showToast("Password minimal 6 karakter");
+    return;
+    }
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+   // 🚫 BLOK JIKA BELUM VERIFIKASI
+       if(!user.emailVerified){
+
+  showToast(`
+    Email belum diverifikasi.<br><br>
+    <button onclick="resendVerification()" style="
+      margin-top:10px;
+      background:#2563eb;
+      color:white;
+      border:none;
+      padding:8px 12px;
+      border-radius:8px;
+      cursor:pointer;
+    ">
+      Kirim Ulang Email
+    </button>
+  `);
+
+  return;
+}
+
+// ✅ BARU BOLEH MASUK
+showToast("Hore! Selamat datang kembali di <strong>JuandyMall</strong>. Selamat berbelanja!", true);
+      
+    } catch (e) {
+        let msg = "Ups! <strong>Email atau Password</strong> salah. Coba cek kembali.";
+        if (e.code === 'auth/user-not-found') msg = "Email belum terdaftar di <strong>JuandyMall</strong>.";
+        showToast(msg); // Default biru untuk error
+    }
+};
+
+// Fungsi penutup
+window.closeAlert = () => {
+    document.getElementById("customAlert").style.display = "none";
+};
+
+  // 2. Fungsi Daftar Akun
+window.registerEmail = async () => {
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if(!email || password.length < 6) {
+        showToast("Email harus valid dan Password minimal 6 karakter ya.");
+        return;
+    }
+
+    try {
+       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+             
+// 📧 kirim verifikasi
+await sendEmailVerification(userCredential.user);
+
+// 💾 SIMPAN KE FIRESTORE (INI YANG KAMU KURANG)
+const user = userCredential.user
+
+await setDoc(doc(db, "users", user.uid), {
+  email: email,
+  role: "buyer",
+  name: email.split("@")[0],
+  phone: "",
+  address: "",
+  createdAt: new Date().toISOString()
+});
+
+showToast("Akun dibuat! Cek email untuk verifikasi sebelum login.");
+        
+    } catch (e) {
+  showToast("Maaf, pendaftaran gagal. Email mungkin sudah digunakan.");
+}
+};
+
+// ✅ 👉 BARIS 1804 (TARUH DI SINI)
+window.resendVerification = async () => {
+  const user = auth.currentUser;
+
+  if(!user){
+    showToast("Silakan login dulu");
+    return;
+  }
+
+  try {
+    await sendEmailVerification(user);
+    showToast("Email verifikasi dikirim ulang!");
+  } catch(e){
+    showToast("Gagal kirim ulang email");
+  }
+};
+
+  // 3. Fungsi Login Google
+  window.loginGoogle = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      await setDoc(doc(db, "users", result.user.uid), {
+        email: result.user.email, displayName: result.user.displayName,
+        photoURL: result.user.photoURL, lastLogin: new Date().toISOString(), role: "buyer"
+      }, { merge: true });
+       showToast("Hore! Selamat datang kembali di <strong>JuandyMall</strong>. Selamat berbelanja!", true);// Teks Tebal
+      } catch (e) {
+      if (e.code !== 'auth/popup-closed-by-user') {
+        showToast("Login Gagal:<br>" + e.message); 
+      }
+    }
+  };
+    
+async function loadUserData(uid){
+  try{
+    const { getDoc } = await import("https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js");
+    const snap = await getDoc(doc(db,"users",uid))
+
+    if(snap.exists()){
+  const data = snap.data()
+
+  const user = auth.currentUser
+  document.getElementById("userEmail").value = user?.email || ""
+
+  document.getElementById("userAddress").value = data.address || ""
+
+  document.getElementById("userName").value = data.name || ""
+  document.getElementById("userPhone").value = data.phone || ""
+  document.getElementById("userGender").value = data.gender || ""
+  document.getElementById("userBirth").value = data.birth || ""
+  document.getElementById("userCity").value = data.city || ""
+  document.getElementById("userProvince").value = data.province || ""
+  document.getElementById("userPostal").value = data.postal || ""
+
+  document.getElementById("userDistrict").value = data.district || ""
+  document.getElementById("userVillage").value = data.village || ""
+
+  document.getElementById("userAge").value = hitungUmur(data.birth)
+}
+
+  }catch(e){
+    console.log("Gagal load user")
+  }
+}
+    
+window.saveAddress = async function(){
+
+  const user = auth.currentUser
+  const alamat = document.getElementById("userAddress").value.trim()
+
+  if(!user){
+    showToast("Silakan login dulu")
+    return
+  }
+
+  if(!alamat){
+    showToast("Alamat tidak boleh kosong")
+    return
+  }
+
+  try{
+    await updateDoc(doc(db,"users",user.uid),{
+      address: alamat
+    })
+
+    showToast("Alamat berhasil disimpan!", true)
+
+  }catch(e){
+    showToast("Gagal simpan alamat")
+  }
+
+}
+    
+window.saveProfile = async function(){
+
+  const user = auth.currentUser
+  const name = document.getElementById("userName").value.trim()
+  const phone = document.getElementById("userPhone").value.trim()
+
+  if(!user){
+    showToast("Login dulu")
+    return
+  }
+
+  if(!name){
+    showToast("Nama tidak boleh kosong")
+    return
+  }
+
+  try{
+    await updateDoc(doc(db,"users",user.uid),{
+      name: name,
+      phone: phone
+    })
+
+    showToast("Profil berhasil disimpan!", true)
+
+  }catch(e){
+    showToast("Gagal simpan profil")
+  }
+
+}
+    
+let isEdit = false
+
+window.toggleEdit = function(){
+
+  const name = document.getElementById("userName")
+  const phone = document.getElementById("userPhone")
+  const address = document.getElementById("userAddress")
+  const btn = document.getElementById("editBtn")
+  const card = document.getElementById("profileCard")
+  const gender = document.getElementById("userGender")
+  const birth = document.getElementById("userBirth")
+  const city = document.getElementById("userCity")
+  const province = document.getElementById("userProvince")
+  const postal = document.getElementById("userPostal")
+ const district = document.getElementById("userDistrict")
+  const village = document.getElementById("userVillage")
+  
+  if(!isEdit){
+    // 👉 MASUK MODE EDIT
+    name.removeAttribute("readonly")
+    phone.removeAttribute("readonly")
+    address.removeAttribute("readonly")
+    gender.removeAttribute("disabled")
+    birth.removeAttribute("readonly")
+    city.removeAttribute("readonly")
+    province.removeAttribute("disabled")
+    postal.removeAttribute("readonly")
+   district.removeAttribute("readonly")
+    village.removeAttribute("readonly")
+    
+    card.classList.add("edit-mode")
+
+    btn.innerText = "Batal Edit"
+    btn.style.background = "#fee2e2"
+    btn.style.color = "#dc2626"
+
+    document.getElementById("editIndicator").style.display = "block"
+      
+    isEdit = true
+
+  }else{
+    // 👉 KELUAR MODE EDIT
+    name.setAttribute("readonly", true)
+    phone.setAttribute("readonly", true)
+    address.setAttribute("readonly", true)
+    gender.setAttribute("disabled", true)
+    birth.setAttribute("readonly", true)
+    city.setAttribute("readonly", true)
+    province.setAttribute("disabled", true)
+    postal.setAttribute("readonly", true)
+   district.setAttribute("readonly", true)
+    village.setAttribute("readonly", true)
+    
+    card.classList.remove("edit-mode")
+
+    btn.innerText = "Edit Data"
+    btn.style.background = "#e5e7eb"
+    btn.style.color = "#111"
+
+    document.getElementById("editIndicator").style.display = "none" 
+      
+    isEdit = false
+  }
+
+}
+
+window.saveAllProfile = async function(){
+
+  const user = auth.currentUser
+  const name = document.getElementById("userName").value.trim()
+  const phone = document.getElementById("userPhone").value.trim()
+  const address = document.getElementById("userAddress").value.trim()
+  const gender = document.getElementById("userGender").value
+  const birth = document.getElementById("userBirth").value
+  const city = document.getElementById("userCity").value
+  const province = document.getElementById("userProvince").value
+  const postal = document.getElementById("userPostal").value
+  const district = document.getElementById("userDistrict").value
+  const village = document.getElementById("userVillage").value
+ 
+  if(!user){
+    showToast("Login dulu")
+    return
+  }
+
+  if(!name){
+    showToast("Nama tidak boleh kosong")
+    return
+  }
+
+  if(!address){
+    showToast("Alamat tidak boleh kosong")
+    return
+  }
+
+  try{
+  await setDoc(doc(db,"users",user.uid),{
+  name: name,
+  phone: phone,
+  address: address,
+  gender: gender,
+  birth: birth,
+  city: city,
+  province: province,
+  district: district,
+  village: village,
+  postal: postal
+}, { merge: true })
+
+    showToast("Data berhasil disimpan!", true)
+
+    // setelah showToast
+
+// ❗ TAMBAHKAN INI
+document.getElementById("userName").setAttribute("readonly", true)
+document.getElementById("userPhone").setAttribute("readonly", true)
+document.getElementById("userAddress").setAttribute("readonly", true)
+
+document.getElementById("profileCard").classList.remove("edit-mode")
+
+const btn = document.getElementById("editBtn")
+btn.innerText = "Edit Data"
+btn.style.background = "#e5e7eb"
+btn.style.color = "#111"
+
+document.getElementById("editIndicator").style.display = "none"
+    
+isEdit = false
+
+// 🔥 UPDATE NAMA DI HEADER LANGSUNG TANPA RELOAD
+const akunMenu = document.querySelector(".bottom div[onclick='handleUserMenu()']")
+
+if(akunMenu){
+  akunMenu.innerHTML = `
+    <i class="fa-solid fa-user-check" style="color:#facc15"></i>
+    <span style="color:#facc15; font-weight:bold;">
+      ${name}
+    </span>
+  `
+}
+
+// 🔥 UPDATE NAMA DI DASHBOARD ATAS
+document.getElementById("dashUserName").innerText = name
+
+  }catch(e){
+    showToast("Gagal simpan data")
+  }
+
+}
+    
+  // 4. Fungsi Reset Password
+window.resetPassword = async () => {
+    
+  const email = document.getElementById("email").value.trim();
+
+  if (!isValidEmail(email)) {
+    showToast("Masukkan email valid");
+    return;
+  }
+
+  try {
+    await sendPasswordResetEmail(auth, email);
+
+    showToast("Jika akun ditemukan, link reset akan dikirim ke email kamu.");
+    
+  } catch (e) {
+    showToast("Gagal reset password");
+  }
+};
+
+// LOAD PRODUK
+  window.db = db;
+  window.doc = doc;
+  window.deleteDoc = deleteDoc;
+  productList.innerHTML = "<p style='text-align:center'>Loading produk...</p>"
+  window.loadFirebaseProducts = async function() {
+    try {
+        const querySnapshot = await getDocs(collection(db, "products"));
+        productData = []; 
+        querySnapshot.forEach((doc) => {
+          const p = doc.data();
+          productData.push({ id: doc.id, name: p.name, price: p.price, stock: p.stock || 10, category: p.category, desc: p.description || "", img: p.image || "" });
+        });
+        loadProducts(); 
+    } catch (e) { console.error("Gagal ambil produk:", e); }
+  };
+
+  window.saveProductFirebase = async function(product) {
+    try {
+        await addDoc(collection(db, "products"), { name: product.name, price: product.price, stock: product.stock, category: product.category, description: product.desc, image: product.img });
+        loadFirebaseProducts();
+    } catch (e) { showToast("Gagal simpan: " + e.message); }
+  };
+
+  // PENTING: Jalankan fungsi ini
+loadFirebaseProducts();
+    
+</script>
+
+<!-- POPUP COMING SOON -->
+
+<div id="popup" class="popup-bg" style="display:none;">
+
+<div class="popup-box">
+
+<div class="popup-icon">🚀</div>
+
+<h2>Fitur Baru </h2>
+
+<p style="font-size:13px;color:#555;">
+Fitur sedang dikembangkan tim <strong>JuandyMall</strong>.<br>
+Segera hadir 🚀
+</p>
+
+<button onclick="closePopup()">Siap</button>
+
+</div>
+
+</div>
+
+<!-- POPUP LOGIN -->
+
+<div id="loginPopup" class="popup-bg" style="display:none;">
+
+<div class="popup-box">
+
+<span onclick="closeLogin()" style="
+position:absolute;
+right:15px;
+top:10px;
+font-size:22px;
+cursor:pointer;
+">✕</span>
+  
+<h2 id="authTitle">Login Akun</h2>
+
+<input id="email" type="email" placeholder="Email">
+
+<div class="password-container" id="passwordArea">
+    <input id="password" type="password" placeholder="Password">
+    <i class="fa-solid fa-eye toggle-password" id="eyeIcon" onclick="togglePasswordVisibility()"></i>
+</div>
+
+<br><br>
+
+<button id="authButton" onclick="submitAuth()">Login</button>
+<br>
+
+<button onclick="loginGoogle()" style="
+width:100%;
+margin-top:12px;
+background:white;
+border:1px solid #ddd;
+padding:12px;
+border-radius:10px;
+font-weight:600;
+font-size:14px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:10px;
+cursor:pointer;
+height:45px;
+color:#333;
+">
+
+<img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" style="width:20px;height:20px;">
+Login dengan Google
+
+</button>
+  
+<div class="login-divider">atau</div>
+  
+<div style="margin-top:10px;font-size:13px">
+
+<span onclick="setMode('login')" style="cursor:pointer">Login</span> |
+
+<span onclick="setMode('register')" style="cursor:pointer">Daftar</span> |
+
+<span onclick="setMode('reset')" style="cursor:pointer">Lupa Password</span>
+
+</div>
+
+</div>
+</div>
+</div>
+  
+<script>
+
+function closeLogin(){
+document.getElementById("loginPopup").style.display="none";
+}
+
+let authMode = "login";
+
+function setMode(mode){
+
+  authMode = mode;
+
+  const title = document.getElementById("authTitle");
+  const button = document.getElementById("authButton");
+  const passwordArea = document.getElementById("passwordArea"); // Ambil area password
+
+  if(mode === "login"){
+      title.innerText = "Login Akun";
+      button.innerText = "Login";
+      passwordArea.style.display = "block"; // Tampilkan area password + mata
+  }
+
+  if(mode === "register"){
+      title.innerText = "Daftar Akun";
+      button.innerText = "Daftar";
+      passwordArea.style.display = "block"; // Tampilkan area password + mata
+  }
+
+  if(mode === "reset"){
+      title.innerText = "Reset Password";
+      button.innerText = "Kirim Reset";
+      passwordArea.style.display = "none"; // SEMBUNYIKAN AREA PASSWORD + MATA
+  }
+
+}
+
+function submitAuth(){
+
+    const popup = document.getElementById("loginPopup");
+
+    // 🚫 hanya jalan kalau popup terbuka
+    if (popup.style.display !== "flex") {
+        console.log("Blocked: popup belum dibuka");
+        return;
+    }
+
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+
+    if (!email) {
+        showToast("Email wajib diisi");
+        return;
+    }
+
+    if (!email.includes("@")) {
+        showToast("Format email tidak valid");
+        return;
+    }
+
+    if (authMode !== "reset" && !password) {
+        showToast("Password wajib diisi");
+        return;
+    }
+
+    if(authMode === "login"){
+        loginEmail();
+    } 
+    else if(authMode === "register"){
+        registerEmail();
+    } 
+    else if(authMode === "reset"){
+        resetPassword();
+    }
+}
+
+// FUNGSI UNTUK LIHAT/TUTUP SANDI
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("password");
+    const eyeIcon = document.getElementById("eyeIcon");
+
+    if (passwordInput.type === "password") {
+        // Ubah jadi teks biasa agar kelihatan
+        passwordInput.type = "text";
+        // Ubah ikon jadi mata dicoret
+        eyeIcon.classList.remove("fa-eye");
+        eyeIcon.classList.add("fa-eye-slash");
+    } else {
+        // Kembalikan jadi bintang-bintang
+        passwordInput.type = "password";
+        // Ubah ikon jadi mata normal
+        eyeIcon.classList.remove("fa-eye-slash");
+        eyeIcon.classList.add("fa-eye");
+    }
+}
+
+</script>
+
+<div class="user-dashboard" id="userDashboard">
+<div style="background: linear-gradient(90deg, #2563eb, #1e3a8a); padding: 18px 16px 14px 60px;color: white; display: flex; align-items: center; gap: 15px; position: relative;">
+<i class="fa-solid fa-chevron-left" onclick="handleUserMenu()"
+
+onmousedown="this.style.transform='translateY(-50%) scale(0.9)'"
+onmouseup="this.style.transform='translateY(-50%) scale(1)'"
+
+style="
+position:absolute;
+top:50%;
+left:16px;
+transform:translateY(-50%);
+font-size:18px;
+cursor:pointer;
+z-index:999;
+width:36px;
+height:36px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:rgba(255,255,255,0.25);
+backdrop-filter:blur(6px);
+transition:0.2s;
+">
+</i>
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" style="width: 50px; height: 50px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.3);">
+        <div>
+            <h3 id="dashUserName" style="margin:0; font-size:16px; color:white;">Nama Pengguna</h3>
+        </div>
+    </div>
+
+    <div style="background: white; margin-top: 10px; padding: 15px;">
+        <div style="font-weight: bold; font-size: 14px; margin-bottom: 15px; display: flex; justify-content: space-between;">Pesanan Saya <span style="font-weight: normal; color: #999; font-size: 11px;">Lihat Riwayat ></span></div>
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); text-align: center;">
+            <div style="font-size: 11px; cursor: pointer;"><i class="fa-solid fa-wallet" style="display: block; font-size: 24px; color: #2563eb; margin-bottom: 8px;"></i>Bayar</div>
+            <div style="font-size: 11px; cursor: pointer;"><i class="fa-solid fa-box" style="display: block; font-size: 24px; color: #2563eb; margin-bottom: 8px;"></i>Kemas</div>
+            <div style="font-size: 11px; cursor: pointer;"><i class="fa-solid fa-truck" style="display: block; font-size: 24px; color: #2563eb; margin-bottom: 8px;"></i>Kirim</div>
+            <div style="font-size: 11px; cursor: pointer;"><i class="fa-solid fa-star" style="display: block; font-size: 24px; color: #2563eb; margin-bottom: 8px;"></i>Nilai</div>
+        </div>
+    </div>
+
+<!-- 👤 INFORMASI AKUN -->
+<div id="profileCard" style="margin:15px; background:white; padding:15px; border-radius:12px;">
+
+  <div style="font-weight:600; margin-bottom:12px;">
+    👤 Informasi Akun
+  </div>
+
+   <div id="editIndicator" style="
+  display:none;
+  background:#dbeafe;
+  color:#1e40af;
+  padding:8px;
+  border-radius:8px;
+  font-size:12px;
+  font-weight:600;
+  margin-bottom:10px;
+  text-align:center;
+  ">
+  ✏️ Silakan ubah data kamu
+  </div>
+    
+  <!-- NAMA -->
+  <div style="font-size:12px;color:#666;margin-bottom:4px;">Nama Lengkap</div>
+  <input id="userName" class="input-style" readonly placeholder="Nama lengkap">
+
+  <!-- HP -->
+  <div style="font-size:12px;color:#666;margin-bottom:4px;">Nomor HP</div>
+ <input id="userPhone" class="input-style" readonly>
+
+  <!-- EMAIL -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Email</div>
+<input id="userEmail" class="input-style" readonly>
+  
+<!-- JENIS KELAMIN -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Jenis Kelamin</div>
+<select id="userGender" class="input-style" disabled>
+  <option value="" disabled selected>Pilih</option>
+  <option value="Laki-laki">Laki-laki</option>
+  <option value="Perempuan">Perempuan</option>
+</select>
+
+<!-- TANGGAL LAHIR -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Tanggal Lahir</div>
+<input type="date" id="userBirth" class="input-style" readonly>
+
+  <!-- UMUR AUTO -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Umur</div>
+<input id="userAge" class="input-style" readonly>
+
+  <!-- ALAMAT -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Alamat Lengkap</div>
+<textarea id="userAddress" class="input-style" readonly></textarea>
+  
+<!-- PROVINSI -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Provinsi</div>
+<select id="userProvince" class="input-style" disabled>
+<option value="" disabled selected hidden>Pilih Provinsi</option>
+
+  <option>Aceh</option>
+  <option>Sumatera Utara</option>
+  <option>Sumatera Barat</option>
+  <option>Riau</option>
+  <option>Kepulauan Riau</option>
+  <option>Jambi</option>
+  <option>Sumatera Selatan</option>
+  <option>Bengkulu</option>
+  <option>Lampung</option>
+  <option>Bangka Belitung</option>
+  <option>DKI Jakarta</option>
+  <option>Jawa Barat</option>
+  <option>Jawa Tengah</option>
+  <option>DI Yogyakarta</option>
+  <option>Jawa Timur</option>
+  <option>Banten</option>
+  <option>Bali</option>
+  <option>Nusa Tenggara Barat</option>
+  <option>Nusa Tenggara Timur</option>
+  <option>Kalimantan Barat</option>
+  <option>Kalimantan Tengah</option>
+  <option>Kalimantan Selatan</option>
+  <option>Kalimantan Timur</option>
+  <option>Kalimantan Utara</option>
+  <option>Sulawesi Utara</option>
+  <option>Sulawesi Tengah</option>
+  <option>Sulawesi Selatan</option>
+  <option>Sulawesi Tenggara</option>
+  <option>Gorontalo</option>
+  <option>Sulawesi Barat</option>
+  <option>Maluku</option>
+  <option>Maluku Utara</option>
+  <option>Papua</option>
+  <option>Papua Barat</option>
+  <option>Papua Selatan</option>
+  <option>Papua Tengah</option>
+  <option>Papua Pegunungan</option>
+  <option>Papua Barat Daya</option>
+
+</select>
+
+<!-- KOTA -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Kota / Kabupaten</div>
+<input id="userCity" class="input-style" readonly>
+
+  <!-- KECAMATAN -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Kecamatan</div>
+<input id="userDistrict" class="input-style" readonly>
+
+  <!-- KELURAHAN -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Kelurahan</div>
+<input id="userVillage" class="input-style" readonly>
+
+<!-- KODE POS -->
+<div style="font-size:12px;color:#666;margin-bottom:4px;">Kode Pos</div>
+<input id="userPostal" class="input-style" readonly>
+  
+  <button id="editBtn" onclick="toggleEdit()" class="btn-edit">
+  ✏️ Edit Data
+</button>
+    
+  <!-- 1 BUTTON -->
+  <button onclick="saveAllProfile()" class="btn-save">
+  💾 Simpan Perubahan
+</button>
+
+</div>
+    
+     <div style="margin:30px 20px 40px 20px;">
+     <div onclick="processLogout()" style="background: white; color: #ef4444; text-align: center; padding: 15px; border-radius: 10px; font-weight: bold; border: 1px solid #ef4444; cursor: pointer;">
+     <i class="fa-solid fa-right-from-bracket"></i> Keluar / Logout
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
