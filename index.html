@@ -1456,7 +1456,8 @@ const pcategory=document.getElementById("pcategory")
 const pdesc=document.getElementById("pdesc")
 const pimg=document.getElementById("pimg")
 
-let editIndex=-1
+let editIndex=-1
+
   
 let productData=[]
 let navStack = ["home"]
@@ -1634,7 +1635,8 @@ saveCart()
 
 }
 
-function openCart(){
+function openCart(){
+
 
 productList.style.display="none"
 detailPage.style.display="none"
@@ -2852,7 +2854,8 @@ window.toggleEdit = function(){
   const birth = document.getElementById("userBirth")
   const city = document.getElementById("userCity")
   const province = document.getElementById("userProvince")
- const district = document.getElementById("userDistrict")
+
+ const district = document.getElementById("userDistrict")
   const village = document.getElementById("userVillage")
   
   if(!isEdit){
@@ -2865,7 +2868,8 @@ window.toggleEdit = function(){
     city.removeAttribute("disabled")
     province.removeAttribute("disabled")
     postal.removeAttribute("readonly")
-   district.removeAttribute("disabled")
+
+   district.removeAttribute("disabled")
     village.removeAttribute("disabled")
     
     card.classList.add("edit-mode")
@@ -2877,7 +2881,8 @@ window.toggleEdit = function(){
     isEdit = true
     document.getElementById("userPostal").value = ""
     
-  }else{
+
+  }else{
     // 👉 KELUAR MODE EDIT
     name.setAttribute("readonly", true)
     phone.setAttribute("readonly", true)
